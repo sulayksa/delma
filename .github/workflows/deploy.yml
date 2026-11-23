@@ -1,0 +1,22 @@
+# Builds the static site and publishes it to the gh-pages branch on every push to main.
+name: Deploy to GitHub Pages
+on:
+  push: { branches: [main] }
+  workflow_dispatch:
+permissions: { contents: write }
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /delma
+          NEXT_PUBLIC_SITE_URL: https://sulayksa.github.io/delma
+          NEXT_PUBLIC_QUOTE_ENDPOINT: ${{ vars.QUOTE_ENDPOINT }}
+      - run: touch out/.nojekyll
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with: { branch: gh-pages, folder: out }
