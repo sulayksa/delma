@@ -27,7 +27,13 @@ export function QuoteForm() {
   const fileInput = useRef<HTMLInputElement>(null);
 
   // keep what the visitor typed if the page reloads or an error happens
-  useEffect(() => { try { const d = sessionStorage.getItem(DRAFT); if (d) setF({ ...empty, ...JSON.parse(d) }); } catch {} }, []);
+  useEffect(() => {
+    let base = empty;
+    try { const d = sessionStorage.getItem(DRAFT); if (d) base = { ...empty, ...JSON.parse(d) }; } catch {}
+    const door = new URLSearchParams(location.search).get('door');
+    if (door) base = { ...base, service: base.service || 'أبواب WPC', details: base.details || `${door}\nالعدد: ` };
+    setF(base);
+  }, []);
   useEffect(() => { try { sessionStorage.setItem(DRAFT, JSON.stringify(f)); } catch {} }, [f]);
 
   const set = (k: keyof F) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -101,8 +107,8 @@ export function QuoteForm() {
   if (state === 'sent' || state === 'whatsapp') {
     return (
       <div className="border border-line bg-white p-8 sm:p-12" role="status">
-        <span className="t-kicker">{state === 'sent' ? 'RECEIVED' : 'WHATSAPP'}</span>
-        <h2 className="t-h2 mt-4 text-ink">{state === 'sent' ? 'وصلنا طلبك' : 'رسالتك جاهزة في واتساب'}</h2>
+        
+        <h2 className="t-h2 text-ink">{state === 'sent' ? 'وصلنا طلبك' : 'رسالتك جاهزة في واتساب'}</h2>
         <p className="t-lead mt-4 max-w-[56ch]">
           {state === 'sent'
             ? 'شكرًا لك. سيتواصل معك فريق المؤسسة على رقم الجوال المسجّل لمراجعة التفاصيل وتقديم عرض السعر.'
@@ -116,7 +122,7 @@ export function QuoteForm() {
     );
   }
 
-  const field = 'mt-2 block w-full border bg-white px-4 text-[16px] text-ink outline-none transition-colors duration-300 placeholder:text-muted/70 focus:border-brand';
+  const field = 'mt-2 block w-full border bg-white px-4 text-[16px] text-ink outline-none transition-colors duration-300 placeholder:text-muted focus:border-brand';
   const bc = (k: keyof F) => (err[k] ? 'border-[#C0392B]' : 'border-line');
   const Msg = ({ k }: { k: keyof F | 'files' }) => err[k] ? <p id={`${k}-err`} className="mt-2 text-[13px] text-[#C0392B]">{err[k]}</p> : null;
 

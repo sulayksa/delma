@@ -42,10 +42,7 @@ export function StackServices({ items, images }: { items: S[]; images: ImgT[] })
           <div className="origin-top will-change-transform">
             <Link href={`/products/${s.slug}/`} className="group relative mb-[8vh] grid min-h-[min(78svh,720px)] overflow-hidden bg-navy text-white lg:grid-cols-12">
               <div className="relative z-[1] flex flex-col justify-between p-[clamp(28px,4vw,64px)] lg:col-span-5">
-                <div className="flex items-center justify-between">
-                  <span className="num text-[clamp(56px,7vw,110px)] font-light leading-none text-white/15">{s.no}</span>
-                  <span className="t-kicker !text-sky">{['WPC · PVC DOORS', 'UPVC WINDOWS & DOORS', 'ALUMINIUM · GLASS · FACADES'][i]}</span>
-                </div>
+                <span aria-hidden className="h-px w-12 bg-sky" />
                 <div>
                   <h3 className="t-h1 !text-[clamp(32px,4vw,56px)]"><SplitWords text={s.title} /></h3>
                   <p className="mt-5 max-w-[40ch] text-[17px] leading-8 text-white/70">{s.lead}</p>

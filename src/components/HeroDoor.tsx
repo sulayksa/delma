@@ -53,7 +53,7 @@ export function HeroDoor() {
         <div className="absolute inset-x-0 bottom-0 z-[3] px-[clamp(20px,5vw,56px)] pb-10 text-white" style={{ opacity: 'var(--cap)', transform: 'translate3d(0, calc((1 - var(--cap)) * 20px), 0)' }}>
           <div className="mx-auto flex max-w-[1320px] items-end justify-between gap-6">
             <p className="text-[clamp(22px,2.6vw,36px)] font-semibold leading-tight">معرض دلما الجزيرة<br /><span className="text-[0.55em] font-normal text-white/75">حي السعادة — الرياض</span></p>
-            <span className="t-kicker !text-white/70">SHOWROOM</span>
+
           </div>
         </div>
 
@@ -79,8 +79,7 @@ export function HeroDoor() {
 
           {/* copy on the wall */}
           <div className="hero-door__copy" style={{ opacity: 'calc(1 - var(--tout))', transform: 'translate3d(0, calc(var(--tout) * -40px), 0)' }}>
-            <div className="flex items-center gap-4 page-enter" style={{ animationDelay: '200ms' }}><span className="h-px w-10 bg-sky" /><span className="t-kicker">DELMA AL JAZEERA · SINCE <span className="num">2011</span></span></div>
-            <h1 className="t-display mt-7 text-ink"><SplitWords now text={'حلول متكاملة\nللأبواب والنوافذ'} delay={250} stagger={90} /></h1>
+            <h1 className="t-display text-ink"><SplitWords now text={'حلول متكاملة\nللأبواب والنوافذ'} delay={250} stagger={90} /></h1>
             <p className="t-lead mt-7 max-w-[44ch] page-enter" style={{ animationDelay: '750ms' }}>
               خبرة منذ <span className="num">2011</span> في تصنيع وتوريد وتركيب الأبواب والنوافذ وحلول الألمنيوم والزجاج، بجودة تنفيذ تهتم بأدق التفاصيل.
             </p>

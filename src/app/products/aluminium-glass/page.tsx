@@ -27,8 +27,7 @@ export default function Page() {
           <ol className="lg:col-span-7 lg:col-start-6">
             {aluminium.items.map((it, i) => (
               <Reveal as="li" key={it.no} delay={i * 60} className="grid grid-cols-12 gap-4 border-t border-line py-8 last:border-b">
-                <span className="num col-span-2 text-[13px] text-sky-ink sm:col-span-1">{it.no}</span>
-                <h3 className="t-h3 col-span-10 text-ink sm:col-span-5">{it.title}</h3>
+                <h3 className="t-h3 col-span-12 text-ink sm:col-span-6">{it.title}</h3>
                 <p className="t-body col-span-12 sm:col-span-6">{it.text}</p>
               </Reveal>
             ))}

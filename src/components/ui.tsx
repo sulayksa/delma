@@ -35,11 +35,8 @@ export function TextLink({ href, children, className = '' }: { href: string; chi
 export function SectionHead({ kicker, title, lead, light = false, className = '' }: { kicker: string; title: ReactNode; lead?: ReactNode; light?: boolean; className?: string }) {
   return (
     <div className={className}>
-      <div className="flex items-center gap-4">
-        <span className={`h-px w-10 ${light ? 'bg-sky' : 'bg-sky'}`} />
-        <span className={`t-kicker ${light ? '!text-sky' : ''}`}>{kicker}</span>
-      </div>
-      <h2 className={`t-h2 mt-5 ${light ? 'text-white' : 'text-ink'}`}>{typeof title === 'string' ? <SplitWords text={title} /> : title}</h2>
+      <span aria-hidden className="block h-px w-12 bg-sky" data-kicker={kicker} />
+      <h2 className={`t-h2 mt-6 ${light ? 'text-white' : 'text-ink'}`}>{typeof title === 'string' ? <SplitWords text={title} /> : title}</h2>
       {lead ? <p className={`t-lead mt-5 max-w-[60ch] ${light ? '!text-white/70' : ''}`}>{lead}</p> : null}
     </div>
   );
@@ -49,7 +46,7 @@ export function PageHero({ kicker, title, lead, children }: { kicker: string; ti
   return (
     <section className="border-b border-line bg-mist pt-[132px] pb-[clamp(48px,7vw,96px)]">
       <div className="wrap">
-        <div className="flex items-center gap-4"><span className="h-px w-10 bg-sky" /><span className="t-kicker">{kicker}</span></div>
+        <nav aria-label="مسار التصفح" className="text-[14px] text-muted" data-kicker={kicker}><Link href="/" className="ulink">الرئيسية</Link><span className="mx-2 text-line">/</span><span className="text-ink">{typeof title === 'string' ? title : ''}</span></nav>
         <h1 className="t-h1 mt-6 max-w-[18ch] text-ink">{typeof title === 'string' ? <SplitWords now text={title} delay={350} stagger={70} /> : title}</h1>
         {lead ? <p className="t-lead mt-6 max-w-[62ch]">{lead}</p> : null}
         {children}

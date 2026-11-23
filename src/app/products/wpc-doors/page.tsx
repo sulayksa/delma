@@ -6,6 +6,7 @@ import { SectionHead, TextLink } from '@/components/ui';
 import { CtaBand } from '@/components/sections';
 import { Models, ProductHero, Related } from '@/components/ProductBlocks';
 import { wpc, colors } from '@/content/site';
+import { StudioTeaser } from '@/components/StudioTeaser';
 import { asset } from '@/lib/paths';
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export default function Page() {
     <>
       <ProductHero kicker={wpc.kicker} title={wpc.title} intro={wpc.intro} image={wpc.hero} crumbs="أبواب WPC" />
       <Models kicker="MODELS" title="الموديلات المتوفرة" items={wpc.models} />
+      <StudioTeaser />
 
       {/* details & specs */}
       <section className="section bg-mist">

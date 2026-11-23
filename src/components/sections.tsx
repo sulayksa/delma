@@ -3,6 +3,7 @@ import { Img } from './Img';
 import { Reveal } from './Reveal';
 import { Button, SectionHead } from './ui';
 import { Process } from './Process';
+import { SplitWords } from './SplitWords';
 import { company, leadership, services, steps, why, waHref, type Leader } from '@/content/site';
 
 /** Editorial list of the three fields — large images, small numbering, hairlines. */
@@ -79,8 +80,7 @@ export function CtaBand() {
     <section className="relative overflow-hidden bg-navy">
       <div className="wrap grid items-end gap-10 py-[clamp(72px,10vw,140px)] lg:grid-cols-12">
         <div className="lg:col-span-8">
-          <Reveal><div className="flex items-center gap-4"><span className="h-px w-10 bg-sky" /><span className="t-kicker !text-sky">START YOUR PROJECT</span></div></Reveal>
-          <Reveal delay={60}><h2 className="t-display mt-6 text-white">ابدأ مشروعك<br />بخطوة واضحة</h2></Reveal>
+          <h2 className="t-display text-white"><SplitWords text={'ابدأ مشروعك\nبخطوة واضحة'} stagger={80} /></h2>
           <Reveal delay={120}><p className="t-lead mt-6 max-w-[52ch] !text-white/70">يسعدنا مساعدتك في اختيار الحلول المناسبة وتقديم عرض سعر وفق متطلبات مشروعك.</p></Reveal>
         </div>
         <Reveal delay={180} className="flex flex-wrap gap-3 lg:col-span-4 lg:justify-end">
@@ -131,8 +131,7 @@ function ExecutiveProfile({ person }: { person: Leader }) {
         </figure>
       </Reveal>
       <div className="lg:col-span-6 lg:col-start-7">
-        <Reveal><span className="t-kicker">{person.role === 'رئيس المؤسسة' ? 'PRESIDENT' : 'MANAGEMENT'}</span></Reveal>
-        <Reveal delay={60}><h3 className="t-h1 mt-5 text-ink">{person.name}</h3></Reveal>
+        <Reveal><h3 className="t-h1 text-ink">{person.name}</h3></Reveal>
         <Reveal delay={100}><p className="mt-4 text-[18px] text-brand">{person.role}</p></Reveal>
         <Reveal delay={140}><div className="mt-8 h-px w-24 bg-sky" /></Reveal>
         {person.bio ? <Reveal delay={180}><p className="t-lead mt-8 max-w-[52ch]">{person.bio}</p></Reveal> : null}

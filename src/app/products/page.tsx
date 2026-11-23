@@ -32,8 +32,7 @@ export default function Page() {
                 </Link>
               </Reveal>
               <div className={`lg:col-span-5 ${i % 2 ? 'lg:order-1' : ''}`}>
-                <Reveal><span className="num text-[13px] text-sky-ink">{s.no}</span></Reveal>
-                <Reveal delay={60}><h2 className="t-h2 mt-3 text-ink">{s.title}</h2></Reveal>
+                <Reveal delay={60}><h2 className="t-h2 text-ink">{s.title}</h2></Reveal>
                 <Reveal delay={100}><p className="t-lead mt-4">{s.lead}</p></Reveal>
                 <Reveal delay={140}>
                   <ul className="mt-8 border-t border-line">

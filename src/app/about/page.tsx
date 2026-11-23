@@ -51,8 +51,7 @@ export default function Page() {
           <div className="lg:col-span-8">
             {services.map((s, i) => (
               <Reveal key={s.slug} delay={i * 70} className="grid grid-cols-12 gap-4 border-t border-line py-7 last:border-b">
-                <span className="num col-span-2 text-[13px] text-sky-ink sm:col-span-1">{s.no}</span>
-                <h3 className="t-h3 col-span-10 text-ink sm:col-span-4">{s.title}</h3>
+                <h3 className="t-h3 col-span-12 text-ink sm:col-span-5">{s.title}</h3>
                 <p className="t-body col-span-12 sm:col-span-7">{s.lead}</p>
               </Reveal>
             ))}

@@ -1,12 +1,14 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { company, telHref, waHref } from '@/content/site';
 
 /** Single floating contact button (bottom-left) that opens three options. */
 export function ContactFab() {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const studio = usePathname()?.includes('door-studio');
   useEffect(() => {
     if (!open) return;
     const close = (e: MouseEvent | KeyboardEvent) => {
@@ -26,7 +28,7 @@ export function ContactFab() {
   ];
 
   return (
-    <div ref={ref} className="fixed bottom-[max(20px,env(safe-area-inset-bottom))] left-5 z-40 sm:left-7">
+    <div ref={ref} className={`fixed bottom-[max(20px,env(safe-area-inset-bottom))] left-5 z-40 sm:left-7 ${studio ? 'max-lg:hidden' : ''}`}>
       <div className={`absolute bottom-[68px] left-0 w-[250px] origin-bottom-left border border-line bg-white shadow-[0_24px_60px_rgba(10,26,58,0.14)] transition-[opacity,transform] duration-400 ease-[var(--ease-out-soft)] ${open ? 'pointer-events-auto scale-100 opacity-100' : 'pointer-events-none scale-[0.96] opacity-0'}`}
         role="menu" aria-hidden={!open}>
         {items.map((it, i) => {

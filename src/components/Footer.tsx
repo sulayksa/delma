@@ -35,13 +35,13 @@ export function Footer() {
             <li><a className="ulink num hover:text-white" href={`mailto:${company.email}`}>{company.email}</a></li>
             <li className="leading-7">{company.address}</li>
           </ul>
-          <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[14px] text-white/60">
+          <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[14px] text-white/70">
             {company.social.map((s) => <li key={s.label}><a className="ulink hover:text-white" href={s.url} target="_blank" rel="noopener noreferrer">{s.label}</a></li>)}
           </ul>
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="wrap flex flex-col gap-2 py-6 text-[13px] text-white/45 sm:flex-row sm:items-center sm:justify-between">
+        <div className="wrap flex flex-col gap-2 py-6 text-[13px] text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <p>© <span className="num">{year}</span> {company.nameAr}. جميع الحقوق محفوظة.</p>
           <p className="num">{company.nameEn}</p>
         </div>

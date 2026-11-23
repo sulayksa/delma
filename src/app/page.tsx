@@ -4,6 +4,7 @@ import { Reveal } from '@/components/Reveal';
 import { HeroDoor } from '@/components/HeroDoor';
 import { HScroll } from '@/components/HScroll';
 import { StackServices } from '@/components/StackServices';
+import { StudioTeaser } from '@/components/StudioTeaser';
 import { Button, SectionHead, TextLink } from '@/components/ui';
 import { CtaBand, Leadership, ProcessSection, WhyDelma } from '@/components/sections';
 import { company, images, wpc, upvc, aluminium, works, services } from '@/content/site';
@@ -56,6 +57,7 @@ export default function Home() {
           <div className="mt-[clamp(40px,6vw,72px)]"><StackServices items={services} images={[wpc.hero, upvc.hero, aluminium.hero]} /></div>
         </div>
       </section>
+      <StudioTeaser />
       <WhyDelma image={images.showroomCorner} />
 
       {/* FEATURED PRODUCTS — pinned horizontal 3D gallery */}

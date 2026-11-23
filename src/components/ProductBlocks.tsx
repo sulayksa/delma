@@ -12,8 +12,7 @@ export function ProductHero({ kicker, title, intro, image, crumbs }: { kicker: s
           <nav aria-label="مسار التصفح" className="text-[13px] text-muted">
             <Link href="/" className="ulink">الرئيسية</Link><span className="mx-2">/</span><Link href="/products/" className="ulink">منتجاتنا وخدماتنا</Link><span className="mx-2">/</span><span className="text-ink">{crumbs}</span>
           </nav>
-          <div className="mt-10 flex items-center gap-4"><span className="h-px w-10 bg-sky" /><span className="t-kicker">{kicker}</span></div>
-          <h1 className="t-h1 mt-5 text-ink">{title}</h1>
+          <h1 className="t-h1 mt-8 text-ink" data-kicker={kicker}>{title}</h1>
           <p className="t-lead mt-6 max-w-[52ch]">{intro}</p>
           <div className="mt-9 flex flex-wrap gap-3"><Button href="/quote/">اطلب عرض سعر</Button><Button href="/catalogue/" variant="ghost">كتالوج الألوان</Button></div>
         </div>
