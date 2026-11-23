@@ -70,3 +70,60 @@ body { background: var(--color-paper); color: var(--color-ink); font-family: var
 
 /* if JavaScript is unavailable, show everything */
 @media (scripting: none) { .reveal, .reveal-img > * { opacity: 1; transform: none; clip-path: none; } }
+
+/* ---------- word-by-word masked rise ---------- */
+.split__mask { display: inline-block; overflow: hidden; vertical-align: top; padding: .14em .04em .26em; margin: -.14em -.04em -.26em; }
+.split__word { display: inline-block; transform: translate3d(0, 112%, 0) rotate(2deg); opacity: 0; transition: transform 1.05s var(--ease-out-soft), opacity .6s ease; will-change: transform; }
+.split.in .split__word { transform: none; opacity: 1; }
+
+/* ---------- 3D image reveal: card tilts up from the floor while its mask opens ---------- */
+.reveal-img { perspective: 1400px; }
+.reveal-img > * { transform-origin: 50% 100%; transform: rotateX(16deg) translate3d(0, 48px, 0) scale(.96); opacity: 0;
+  transition: clip-path 1.3s var(--ease-out-soft), transform 1.3s var(--ease-out-soft), opacity .8s ease; transition-delay: var(--rv-d, 0ms); }
+.reveal-img.in > * { transform: none; opacity: 1; }
+
+/* ---------- page transition curtain ---------- */
+.page-curtain { position: fixed; inset: 0; z-index: 90; pointer-events: none; }
+.page-curtain__panel { position: absolute; inset: 0; background: var(--color-navy); transform: translate3d(0, 100%, 0); }
+.page-curtain__line { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--color-sky); transform: scaleX(0); transform-origin: right; }
+.page-curtain[data-state="cover"] { pointer-events: auto; }
+.page-curtain[data-state="cover"] .page-curtain__panel { transform: none; transition: transform .6s cubic-bezier(.76,0,.24,1); }
+.page-curtain[data-state="cover"] .page-curtain__line { transform: scaleX(1); transition: transform .6s cubic-bezier(.76,0,.24,1) .05s; }
+.page-curtain[data-state="leave"] .page-curtain__panel { transform: translate3d(0, -100%, 0); transition: transform .8s cubic-bezier(.76,0,.24,1); }
+.page-curtain[data-state="leave"] .page-curtain__line { transform: scaleX(0); transform-origin: left; transition: transform .5s ease; }
+
+/* lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .split__word { transform: none !important; opacity: 1 !important; }
+  .page-curtain { display: none; }
+}
+
+/* ---------- hero: 3D door ---------- */
+@keyframes scrollcue { 0% { transform: translateY(-100%); } 60%, 100% { transform: translateY(200%); } }
+.hero-door { --ox: 27%; --oy: 52%; --dh: min(62svh, 640px); }
+.hero-door__scene { transform-origin: var(--ox) var(--oy); will-change: transform; }
+.hero-door__opening {
+  position: absolute; left: var(--ox); top: var(--oy); height: var(--dh); aspect-ratio: 0.46;
+  transform: translate(-50%, -50%); perspective: 1700px; perspective-origin: 50% 45%;
+  /* everything outside the doorway is painted as the white wall */
+  box-shadow: 0 0 0 300vmax #fff; overflow: hidden; outline: 10px solid #E7E1D8;
+}
+.hero-door__leaf { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 100% 50%; will-change: transform;
+  box-shadow: 0 30px 60px -30px rgba(10,26,58,.35); }
+.hero-door__edge { position: absolute; top: 0; bottom: 0; left: 0; width: 38px; background-size: cover; filter: brightness(.7);
+  transform-origin: 0 50%; transform: rotateY(90deg); }
+.hero-door__floor { position: absolute; left: 0; right: 0; top: calc(var(--oy) + var(--dh) / 2 + 10px); height: 1px; background: #E3E7ED; }
+.hero-door__floor::after { content: ""; position: absolute; left: calc(var(--ox) - var(--dh) * .34); width: calc(var(--dh) * .68); top: 0; height: 26px;
+  background: radial-gradient(50% 100% at 50% 0, rgba(10,26,58,.16), transparent 70%); }
+.hero-door__copy { position: absolute; right: max(clamp(20px,5vw,56px), calc((100vw - 1320px) / 2 + 56px)); top: 50%; width: min(44vw, 620px);
+  translate: 0 -50%; z-index: 5; }
+@media (max-width: 767px) {
+  .hero-door { --ox: 50%; --oy: 71%; --dh: 40svh; }
+  .hero-door__copy { right: 20px; left: 20px; width: auto; top: 96px; translate: none; }
+  .hero-door__copy .t-lead { font-size: 15px; line-height: 1.8; margin-top: 14px; }
+  .hero-door__copy .mt-10 { margin-top: 18px; }
+}

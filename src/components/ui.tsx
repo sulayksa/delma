@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { SplitWords } from './SplitWords';
 
 const Arrow = () => (
   <svg aria-hidden width="18" height="18" viewBox="0 0 24 24" fill="none" className="transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:-translate-x-1.5">
@@ -38,7 +39,7 @@ export function SectionHead({ kicker, title, lead, light = false, className = ''
         <span className={`h-px w-10 ${light ? 'bg-sky' : 'bg-sky'}`} />
         <span className={`t-kicker ${light ? '!text-sky' : ''}`}>{kicker}</span>
       </div>
-      <h2 className={`t-h2 mt-5 ${light ? 'text-white' : 'text-ink'}`}>{title}</h2>
+      <h2 className={`t-h2 mt-5 ${light ? 'text-white' : 'text-ink'}`}>{typeof title === 'string' ? <SplitWords text={title} /> : title}</h2>
       {lead ? <p className={`t-lead mt-5 max-w-[60ch] ${light ? '!text-white/70' : ''}`}>{lead}</p> : null}
     </div>
   );
@@ -49,7 +50,7 @@ export function PageHero({ kicker, title, lead, children }: { kicker: string; ti
     <section className="border-b border-line bg-mist pt-[132px] pb-[clamp(48px,7vw,96px)]">
       <div className="wrap">
         <div className="flex items-center gap-4"><span className="h-px w-10 bg-sky" /><span className="t-kicker">{kicker}</span></div>
-        <h1 className="t-h1 mt-6 max-w-[18ch] text-ink">{title}</h1>
+        <h1 className="t-h1 mt-6 max-w-[18ch] text-ink">{typeof title === 'string' ? <SplitWords now text={title} delay={350} stagger={70} /> : title}</h1>
         {lead ? <p className="t-lead mt-6 max-w-[62ch]">{lead}</p> : null}
         {children}
       </div>

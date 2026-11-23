@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { Img } from '@/components/Img';
 import { Reveal } from '@/components/Reveal';
-import { Parallax } from '@/components/Parallax';
-import { Featured } from '@/components/Featured';
+import { HeroDoor } from '@/components/HeroDoor';
+import { HScroll } from '@/components/HScroll';
+import { StackServices } from '@/components/StackServices';
 import { Button, SectionHead, TextLink } from '@/components/ui';
-import { CtaBand, Leadership, ProcessSection, ServicesEditorial, WhyDelma } from '@/components/sections';
-import { company, images, wpc, upvc, aluminium, works } from '@/content/site';
+import { CtaBand, Leadership, ProcessSection, WhyDelma } from '@/components/sections';
+import { company, images, wpc, upvc, aluminium, works, services } from '@/content/site';
 
 export default function Home() {
   const featured = [
@@ -20,36 +21,7 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO — asymmetric: copy on the start side, a tall showroom image bleeding to the end edge */}
-      <section className="relative overflow-hidden bg-white pt-[88px]">
-        <div className="grid min-h-[calc(100svh-88px)] lg:grid-cols-12">
-          <div className="wrap flex flex-col justify-center py-14 lg:col-span-6 lg:max-w-none lg:py-0 lg:pl-12 lg:pr-[max(56px,calc((100vw-1320px)/2+56px))]">
-            <div className="reveal in flex items-center gap-4" style={{ ['--rv-d' as string]: '80ms' }}><span className="h-px w-10 bg-sky" /><span className="t-kicker">DELMA AL JAZEERA · SINCE <span className="num">2011</span></span></div>
-            <h1 className="t-display mt-7 max-w-[13ch] text-ink page-enter" style={{ animationDelay: '120ms' }}>حلول متكاملة للأبواب والنوافذ</h1>
-            <p className="t-lead mt-7 max-w-[48ch] page-enter" style={{ animationDelay: '220ms' }}>
-              خبرة منذ <span className="num">2011</span> في تصنيع وتوريد وتركيب الأبواب والنوافذ وحلول الألمنيوم والزجاج، بجودة تنفيذ تهتم بأدق التفاصيل.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3 page-enter" style={{ animationDelay: '320ms' }}>
-              <Button href="/products/">استكشف خدماتنا</Button>
-              <Button href="/quote/" variant="ghost">اطلب عرض سعر</Button>
-            </div>
-            <a href="#about-brief" className="mt-16 hidden items-center gap-3 text-[13px] text-muted lg:inline-flex" aria-label="انتقل إلى النبذة">
-              <span className="relative block h-10 w-px overflow-hidden bg-line"><span className="absolute inset-x-0 top-0 h-1/2 animate-[scrollcue_2.4s_ease-in-out_infinite] bg-sky" /></span>
-              مرّر للأسفل
-            </a>
-          </div>
-          <div className="relative min-h-[56vh] lg:col-span-6 lg:min-h-0">
-            <Parallax amount={5} className="absolute inset-0">
-              <Img img={images.hero} priority sizes="(min-width:1024px) 50vw, 100vw" className="h-full w-full" position="40% 50%" />
-            </Parallax>
-            <div className="absolute bottom-0 right-0 hidden bg-white px-7 py-5 lg:block">
-              <p className="text-[13px] text-muted">المعرض</p>
-              <p className="mt-1 text-[15px] font-medium text-ink">حي السعادة، الرياض</p>
-            </div>
-          </div>
-        </div>
-        <style>{`@keyframes scrollcue{0%{transform:translateY(-100%)}60%,100%{transform:translateY(200%)}}`}</style>
-      </section>
+      <HeroDoor />
 
       {/* ABOUT BRIEF */}
       <section id="about-brief" className="section border-t border-line">
@@ -78,16 +50,21 @@ export default function Home() {
         </div>
       </section>
 
-      <ServicesEditorial />
-      <WhyDelma image={images.showroomCorner} />
-
-      {/* FEATURED PRODUCTS */}
-      <section className="section">
+      <section className="pt-[clamp(72px,10vw,152px)]">
         <div className="wrap">
-          <Reveal><SectionHead kicker="SELECTED PRODUCTS" title="منتجات مختارة" lead="أربعة موديلات من أبواب WPC، إلى جانب شبابيك UPVC وحلول الألمنيوم والزجاج." /></Reveal>
-          <Featured items={featured} />
+          <Reveal><SectionHead kicker="OUR FIELDS" title="مجالاتنا" lead="ثلاثة مجالات متخصصة، تُنفَّذ وفق المقاسات والمواصفات المعتمدة لكل مشروع." /></Reveal>
+          <div className="mt-[clamp(40px,6vw,72px)]"><StackServices items={services} images={[wpc.hero, upvc.hero, aluminium.hero]} /></div>
         </div>
       </section>
+      <WhyDelma image={images.showroomCorner} />
+
+      {/* FEATURED PRODUCTS — pinned horizontal 3D gallery */}
+      <HScroll items={featured} heading={
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionHead kicker="SELECTED PRODUCTS" title="منتجات مختارة" lead="أربعة موديلات من أبواب WPC، إلى جانب شبابيك UPVC وحلول الألمنيوم والزجاج." />
+          <TextLink href="/products/">جميع المنتجات</TextLink>
+        </div>
+      } />
 
       {/* WORKS PREVIEW */}
       <section className="section bg-mist">

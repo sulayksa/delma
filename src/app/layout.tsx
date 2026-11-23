@@ -3,6 +3,7 @@ import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ContactFab } from '@/components/ContactFab';
+import { Providers } from '@/components/Providers';
 import { company } from '@/content/site';
 import { SITE_URL, asset } from '@/lib/paths';
 
@@ -39,10 +40,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ar" dir="rtl">
       <body>
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:right-4 focus:top-4 focus:z-[60] focus:bg-white focus:px-4 focus:py-2">تخطَّ إلى المحتوى</a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
-        <ContactFab />
+        <Providers>
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+          <ContactFab />
+        </Providers>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} />
       </body>
     </html>
