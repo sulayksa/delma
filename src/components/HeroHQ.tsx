@@ -32,19 +32,26 @@ export function HeroHQ() {
 
   const facts = [['التأسيس', '2011'], ['المقر والمعرض', 'حي السعادة، الرياض'], ['الخدمات', 'تصنيع · توريد · تركيب']];
   return (
-    <section ref={sec} className="relative h-[100svh] min-h-[640px] overflow-hidden bg-paper">
-      <div className="absolute inset-y-0 left-0 w-full overflow-hidden md:w-[64%]">
+    <section ref={sec} className="relative overflow-hidden bg-paper max-md:pt-[96px] md:h-[100svh] md:min-h-[640px]">
+      {/* phone: the whole building, framed — a 16:9 photo cropped to a tall screen only shows a blurry slice of the sign */}
+      <div className="wrap md:hidden">
+        <div className="lux relative aspect-[16/11] overflow-hidden page-enter">
+          <Img img={{ src: 'hq-hero', alt: 'مقر مؤسسة دلما الجزيرة للمقاولات في الرياض', w: 3840, h: 2161 }} priority sizes="92vw" className="absolute inset-0 h-full w-full hero-hq__img" position="52% 46%" />
+          <span className="absolute bottom-0 right-0 bg-white/95 px-3 py-1.5 text-[12px] text-ink">المقر الرئيسي — الرياض</span>
+        </div>
+      </div>
+      <div className="absolute inset-y-0 left-0 hidden w-[64%] overflow-hidden md:block">
       <div ref={layer} className="absolute inset-[-4%] will-change-transform" style={{ transform: 'scale(1.08)' }}>
-        <Img img={{ src: 'hq-hero', alt: 'مقر مؤسسة دلما الجزيرة للمقاولات في الرياض', w: 3840, h: 2161 }} priority sizes="100vw" className="h-full w-full hero-hq__img" position="56% 42%" />
+        <Img img={{ src: 'hq-hero', alt: 'مقر مؤسسة دلما الجزيرة للمقاولات في الرياض', w: 3840, h: 2161 }} sizes="64vw" className="h-full w-full hero-hq__img" position="56% 42%" />
       </div>
       </div>
       {/* grade: deep navy from the text side, fading to the photo */}
-      <div aria-hidden className="absolute inset-0 bg-[linear-gradient(270deg,#F8FAFD_0%,#F8FAFD_36%,rgba(248,250,253,0.55)_46%,rgba(248,250,253,0)_58%)] max-md:bg-[linear-gradient(180deg,rgba(248,250,253,0)_0%,rgba(248,250,253,0)_22%,#F8FAFD_46%,#F8FAFD_100%)]" />
-      <div aria-hidden className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(248,250,253,0.9),transparent)]" />
-      <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(0deg,var(--color-paper),transparent)]" />
-      <div aria-hidden className="hero-hq__sweep absolute inset-0" />
+      <div aria-hidden className="absolute inset-0 hidden md:block bg-[linear-gradient(270deg,#F8FAFD_0%,#F8FAFD_36%,rgba(248,250,253,0.55)_46%,rgba(248,250,253,0)_58%)] max-md:bg-[linear-gradient(180deg,rgba(248,250,253,0)_0%,rgba(248,250,253,0)_22%,#F8FAFD_46%,#F8FAFD_100%)]" />
+      <div aria-hidden className="absolute inset-x-0 top-0 hidden h-40 md:block bg-[linear-gradient(180deg,rgba(248,250,253,0.9),transparent)]" />
+      <div aria-hidden className="absolute inset-x-0 bottom-0 hidden h-40 md:block bg-[linear-gradient(0deg,var(--color-paper),transparent)]" />
+      <div aria-hidden className="hero-hq__sweep absolute inset-0 hidden md:block" />
 
-      <div className="wrap relative z-[2] flex h-full flex-col justify-end pb-[clamp(36px,7vh,72px)] pt-[120px] md:justify-center md:pb-0"
+      <div className="wrap relative z-[2] flex flex-col pb-[clamp(48px,9vw,72px)] pt-10 md:h-full md:justify-center md:pb-0 md:pt-[120px]"
         style={{ opacity: 'calc(1 - var(--hp, 0) * 1.6)', transform: 'translate3d(0, calc(var(--hp, 0) * -60px), 0)' }}>
         <div className="max-w-[640px]">
           <span aria-hidden className="block h-px w-14 origin-right bg-sky page-enter" style={{ animationDelay: '150ms' }} />
