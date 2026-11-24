@@ -40,9 +40,9 @@ export default function Page() {
             </Reveal>
           </div>
           <div className="grid grid-cols-2 gap-4 lg:col-span-7">
-            <Reveal img className="row-span-2"><div className="relative h-full min-h-[320px] overflow-hidden bg-white"><Img img={wpc.details[0]} fit="contain" sizes="30vw" className="absolute inset-0 h-full w-full p-6" /></div></Reveal>
-            <Reveal img delay={100}><div className="relative aspect-[4/3] overflow-hidden bg-white"><Img img={wpc.details[1]} fit="contain" sizes="25vw" className="absolute inset-0 h-full w-full p-5" /></div></Reveal>
-            <Reveal img delay={180}><div className="relative aspect-[4/3] overflow-hidden bg-white"><Img img={wpc.details[2]} fit="contain" sizes="25vw" className="absolute inset-0 h-full w-full p-5" /></div></Reveal>
+            <Reveal img className="row-span-2"><div className="relative h-full min-h-[320px] overflow-hidden bg-paper"><Img img={wpc.details[0]} fit="contain" sizes="30vw" className="absolute inset-0 h-full w-full p-6" /></div></Reveal>
+            <Reveal img delay={100}><div className="relative aspect-[4/3] overflow-hidden bg-paper"><Img img={wpc.details[1]} fit="contain" sizes="25vw" className="absolute inset-0 h-full w-full p-5" /></div></Reveal>
+            <Reveal img delay={180}><div className="relative aspect-[4/3] overflow-hidden bg-paper"><Img img={wpc.details[2]} fit="contain" sizes="25vw" className="absolute inset-0 h-full w-full p-5" /></div></Reveal>
           </div>
         </div>
       </section>

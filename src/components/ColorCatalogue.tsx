@@ -17,7 +17,7 @@ export function ColorCatalogue({ codes }: { codes: string[] }) {
             <img key={c} src={asset(`/img/colors/${c}.webp`)} alt={`عينة لون أبواب WPC بالكود ${c}`} width={900} height={1105} loading={i < 2 ? 'eager' : 'lazy'}
               className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-[var(--ease-out-soft)]" style={{ opacity: i === sel ? 1 : 0 }} />
           ))}
-          <span className="absolute bottom-0 right-0 flex items-center gap-3 bg-white px-5 py-3">
+          <span className="absolute bottom-0 right-0 flex items-center gap-3 bg-paper px-5 py-3">
             <span className="text-[13px] text-muted">الكود</span><span className="num text-[20px] font-semibold text-ink">{code}</span>
           </span>
           <span className="absolute left-4 top-4 grid h-10 w-10 place-items-center bg-white/90 text-ink opacity-0 transition-opacity group-hover:opacity-100" aria-hidden>
@@ -33,10 +33,10 @@ export function ColorCatalogue({ codes }: { codes: string[] }) {
           <li key={c}>
             <button type="button" onClick={() => setSel(i)} aria-pressed={i === sel} aria-label={`اختيار اللون ${c}`}
               className="group block w-full text-right">
-              <span className={`relative block aspect-[3/4] overflow-hidden outline outline-1 outline-offset-[3px] transition-[outline-color] duration-300 ${i === sel ? 'outline-brand' : 'outline-transparent group-hover:outline-line'}`}>
+              <span className={`relative block aspect-[3/4] overflow-hidden outline outline-1 outline-offset-[3px] transition-[outline-color] duration-300 ${i === sel ? 'outline-sky' : 'outline-transparent group-hover:outline-line'}`}>
                 <img src={asset(`/img/colors/${c}-sm.webp`)} alt="" width={360} height={442} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-105" />
               </span>
-              <span className={`num mt-2 block text-[13px] ${i === sel ? 'font-semibold text-brand' : 'text-body'}`}>{c}</span>
+              <span className={`num mt-2 block text-[13px] ${i === sel ? 'font-semibold text-sky' : 'text-body'}`}>{c}</span>
             </button>
           </li>
         ))}

@@ -17,7 +17,7 @@ export function ServicesEditorial() {
             <Link key={s.slug} href={`/products/${s.slug}/`} className="group grid items-center gap-6 border-b border-line py-8 md:grid-cols-12 md:gap-10 md:py-10">
               <Reveal delay={i * 60} className="md:col-span-1"><span className="num text-[13px] text-muted">{s.no}</span></Reveal>
               <Reveal delay={i * 60 + 40} className="md:col-span-5">
-                <h3 className="t-h2 !text-[clamp(26px,3vw,40px)] text-ink transition-colors duration-500 group-hover:text-brand">{s.title}</h3>
+                <h3 className="t-h2 !text-[clamp(26px,3vw,40px)] text-ink transition-colors duration-500 group-hover:text-sky">{s.title}</h3>
                 <p className="t-body mt-3 max-w-[44ch]">{s.lead}</p>
               </Reveal>
               <div className="md:col-span-4 md:col-start-8">
@@ -26,7 +26,7 @@ export function ServicesEditorial() {
                 </div>
               </div>
               <div className="hidden justify-end md:col-span-1 md:flex">
-                <span className="grid h-12 w-12 place-items-center border border-line text-ink transition-[background-color,color,border-color] duration-500 group-hover:border-brand group-hover:bg-brand group-hover:text-white">
+                <span className="grid h-12 w-12 place-items-center border border-line text-ink transition-[background-color,color,border-color] duration-500 group-hover:border-sky group-hover:bg-brand group-hover:text-white">
                   <svg aria-hidden width="18" height="18" viewBox="0 0 24 24" fill="none" className="transition-transform duration-500 group-hover:-translate-x-0.5"><path d="M19 12H5m0 0 6-6m-6 6 6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </span>
               </div>
@@ -115,7 +115,7 @@ export function Leadership({ compact = false }: { compact?: boolean }) {
 function Portrait({ person, sizes }: { person: Leader; sizes: string }) {
   if (person.photo) return <Img img={person.photo} sizes={sizes} className="absolute inset-0 h-full w-full" position="50% 20%" />;
   const initials = person.name.split(' ').filter((w) => w.length > 2).slice(0, 2).map((w) => w[0]).join(' ');
-  return <div className="absolute inset-0 grid place-items-center bg-[linear-gradient(180deg,#EEF1F5,#E3E7ED)] text-[64px] font-light text-brand/40">{initials}</div>;
+  return <div className="absolute inset-0 grid place-items-center bg-[linear-gradient(180deg,#EEF1F5,#E3E7ED)] text-[64px] font-light text-sky/40">{initials}</div>;
 }
 
 function ExecutiveProfile({ person }: { person: Leader }) {
@@ -132,7 +132,7 @@ function ExecutiveProfile({ person }: { person: Leader }) {
       </Reveal>
       <div className="lg:col-span-6 lg:col-start-7">
         <Reveal><h3 className="t-h1 text-ink">{person.name}</h3></Reveal>
-        <Reveal delay={100}><p className="mt-4 text-[18px] text-brand">{person.role}</p></Reveal>
+        <Reveal delay={100}><p className="mt-4 text-[18px] text-sky">{person.role}</p></Reveal>
         <Reveal delay={140}><div className="mt-8 h-px w-24 bg-sky" /></Reveal>
         {person.bio ? <Reveal delay={180}><p className="t-lead mt-8 max-w-[52ch]">{person.bio}</p></Reveal> : null}
         <Reveal delay={200}><p className="mt-8 text-[15px] leading-8 text-muted">{company.nameAr} · {company.city} · منذ <span className="num">{company.founded}</span></p></Reveal>
@@ -146,7 +146,7 @@ function MemberCard({ person }: { person: Leader }) {
     <Reveal className="group">
       <div className="relative aspect-[4/5] overflow-hidden bg-mist"><Portrait person={person} sizes="33vw" /></div>
       <h3 className="t-h3 mt-5 text-ink">{person.name}</h3>
-      <p className="mt-1 text-[15px] text-brand">{person.role}</p>
+      <p className="mt-1 text-[15px] text-sky">{person.role}</p>
     </Reveal>
   );
 }

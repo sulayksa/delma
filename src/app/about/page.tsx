@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { Img } from '@/components/Img';
 import { Reveal } from '@/components/Reveal';
 import { PageHero, SectionHead } from '@/components/ui';
-import { CtaBand, Leadership, ProcessSection, WhyDelma } from '@/components/sections';
+import { CtaBand, ProcessSection, WhyDelma } from '@/components/sections';
+import { LeaderSpotlight } from '@/components/LeaderSpotlight';
 import { company, images, services } from '@/content/site';
 
 export const metadata: Metadata = {
@@ -75,7 +76,7 @@ export default function Page() {
               ['جودة التنفيذ', 'تصنيع وتركيب وفق المواصفات المعتمدة.'],
               ['المتابعة بعد التركيب', 'استقبال استفسارات العملاء بعد التركيب.'],
             ].map(([t, d], i) => (
-              <Reveal key={t} delay={i * 70} className="bg-white p-7">
+              <Reveal key={t} delay={i * 70} className="bg-paper p-7">
                 <span className="num text-[12px] text-muted">0{i + 1}</span>
                 <h3 className="t-h3 mt-6 text-ink">{t}</h3><p className="t-body mt-2">{d}</p>
               </Reveal>
@@ -86,7 +87,7 @@ export default function Page() {
 
       <WhyDelma image={images.showroomWide} />
       <ProcessSection />
-      <Leadership compact />
+      <LeaderSpotlight />
       <CtaBand />
     </>
   );

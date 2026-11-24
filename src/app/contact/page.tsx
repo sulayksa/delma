@@ -41,7 +41,7 @@ export default function Page() {
           <Reveal img className="lg:col-span-6">
             <a href={company.mapsUrl} target="_blank" rel="noopener noreferrer" className="zoom group relative block aspect-[4/3] overflow-hidden" aria-label="موقع المعرض على خرائط Google">
               <Img img={images.hq} sizes="(min-width:1024px) 50vw, 100vw" className="absolute inset-0 h-full w-full" position="60% 50%" />
-              <span className="absolute bottom-0 right-0 bg-white px-5 py-3 text-[14px] text-ink">المعرض — حي السعادة، الرياض · <span className="text-brand">الخريطة ↗</span></span>
+              <span className="absolute bottom-0 right-0 bg-paper px-5 py-3 text-[14px] text-ink">المعرض — حي السعادة، الرياض · <span className="text-sky">الخريطة ↗</span></span>
             </a>
           </Reveal>
         </div>

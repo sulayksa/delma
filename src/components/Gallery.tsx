@@ -21,7 +21,7 @@ export function Gallery({ items, filters = false }: { items: Item[]; filters?: b
         <div role="tablist" aria-label="تصفية النماذج" className="mb-10 flex flex-wrap gap-2">
           {tags.map((t) => (
             <button key={t} type="button" role="tab" aria-selected={tag === t} onClick={() => { setTag(t); setOpen(null); }}
-              className={`h-10 border px-5 text-[14px] transition-colors duration-300 ${tag === t ? 'border-brand bg-brand text-white' : 'border-line text-ink hover:border-ink'}`}>{t}</button>
+              className={`h-10 border px-5 text-[14px] transition-colors duration-300 ${tag === t ? 'border-sky bg-sky text-navy' : 'border-line text-ink hover:border-ink'}`}>{t}</button>
           ))}
         </div>
       ) : null}
@@ -31,7 +31,7 @@ export function Gallery({ items, filters = false }: { items: Item[]; filters?: b
             <Reveal img delay={(i % 3) * 70}>
               <button type="button" onClick={() => setOpen(i)} className="zoom group relative block w-full overflow-hidden bg-mist text-right" aria-label={`عرض الصورة: ${it.alt}`}>
                 <Img img={it} sizes="(min-width:768px) 33vw, 50vw" className="block h-auto w-full" />
-                {it.tag ? <span className="absolute bottom-0 right-0 bg-white/95 px-3 py-1.5 text-[12px] text-ink">{it.tag}</span> : null}
+                {it.tag ? <span className="absolute bottom-0 right-0 bg-navy/85 px-3 py-1.5 text-[12px] text-ink">{it.tag}</span> : null}
               </button>
             </Reveal>
           </li>

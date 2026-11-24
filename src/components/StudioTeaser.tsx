@@ -11,8 +11,8 @@ export function StudioTeaser() {
       <div className="wrap grid items-center gap-12 py-[clamp(72px,10vw,140px)] lg:grid-cols-12">
         <div className="lg:col-span-5">
           <span aria-hidden className="block h-px w-12 bg-sky" />
-          <h2 className="t-h1 mt-6"><SplitWords text={'جرّب الباب\nقبل أن تطلبه'} stagger={80} /></h2>
-          <Reveal delay={200}><p className="mt-6 max-w-[42ch] text-[17px] leading-8 text-white/75">استوديو ثلاثي الأبعاد لأبواب WPC: اختر الموديل واللون من الكتالوج ولون المقبض، ودوّر الباب من كل الاتجاهات، ثم افتحه.</p></Reveal>
+          <h2 className="t-h1 mt-6"><SplitWords text={'جرّب الباب والشباك\nقبل أن تطلبه'} stagger={80} /></h2>
+          <Reveal delay={200}><p className="mt-6 max-w-[42ch] text-[17px] leading-8 text-white/75">استوديو ثلاثي الأبعاد لأبواب WPC وUPVC والشبابيك: اختر النوع واللون، ودوّره من كل الاتجاهات، والمسه ليفتح ويُغلق.</p></Reveal>
           <Reveal delay={280}>
             <Link href="/door-studio/" className="group mt-10 inline-flex h-[56px] items-center gap-4 bg-white px-7 text-[16px] font-medium text-navy transition-colors duration-300 hover:bg-sky hover:text-white">
               افتح استوديو الأبواب

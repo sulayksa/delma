@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Img } from '@/components/Img';
 import { Reveal } from '@/components/Reveal';
-import { PageHero } from '@/components/ui';
+import { Button, PageHero } from '@/components/ui';
 import { CtaBand, ProcessSection } from '@/components/sections';
 import { services, wpc, upvc, aluminium } from '@/content/site';
 
@@ -21,7 +21,9 @@ const subs: Record<string, string[]> = {
 export default function Page() {
   return (
     <>
-      <PageHero kicker="PRODUCTS & SERVICES" title="منتجاتنا وخدماتنا" lead="حلول متنوعة للمساحات السكنية والتجارية: تصنيع وتوريد وتركيب وفق المقاسات والمواصفات المطلوبة." />
+      <PageHero kicker="PRODUCTS & SERVICES" title="منتجاتنا وخدماتنا" lead="حلول متنوعة للمساحات السكنية والتجارية: تصنيع وتوريد وتركيب وفق المقاسات والمواصفات المطلوبة.">
+        <div className="mt-9 flex flex-wrap gap-3"><Button href="/door-studio/">جرّب الأبواب والشبابيك ثلاثية الأبعاد</Button><Button href="/quote/" variant="ghost">اطلب عرض سعر</Button></div>
+      </PageHero>
       <section className="section">
         <div className="wrap space-y-[clamp(64px,9vw,128px)]">
           {services.map((s, i) => (
@@ -40,7 +42,7 @@ export default function Page() {
                   </ul>
                 </Reveal>
                 <Reveal delay={180}>
-                  <Link href={`/products/${s.slug}/`} className="group mt-8 inline-flex items-center gap-2 text-[15px] font-medium text-brand"><span className="ulink">التفاصيل والصور</span>
+                  <Link href={`/products/${s.slug}/`} className="group mt-8 inline-flex items-center gap-2 text-[15px] font-medium text-sky"><span className="ulink">التفاصيل والصور</span>
                     <svg aria-hidden width="18" height="18" viewBox="0 0 24 24" fill="none" className="transition-transform duration-500 group-hover:-translate-x-1.5"><path d="M19 12H5m0 0 6-6m-6 6 6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </Link>
                 </Reveal>

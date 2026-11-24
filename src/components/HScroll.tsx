@@ -54,17 +54,17 @@ export function HScroll({ items, heading }: { items: Item[]; heading: React.Reac
           {items.map((it, i) => (
             <div key={it.title} className="shrink-0 snap-start">
               <Link href={it.href} className="group block w-[min(76vw,340px)] will-change-transform lg:w-[min(26vw,42svh,380px)]">
-                <div className="relative aspect-[4/5] overflow-hidden bg-white">
+                <div className="relative aspect-[4/5] overflow-hidden bg-paper">
                   <Img img={it.image} fit={it.fit ?? 'cover'} sizes="(min-width:1024px) 30vw, 76vw"
                     className={`absolute inset-0 h-full w-full transition-transform duration-[1.4s] ease-[var(--ease-out-soft)] group-hover:scale-[1.05] ${it.fit === 'contain' ? 'p-[9%]' : ''}`} />
                   <span className="num absolute right-4 top-4 text-[12px] text-muted">0{i + 1}</span>
                 </div>
                 <div className="mt-5 flex items-end justify-between gap-3 border-t border-line pt-4">
                   <div>
-                    <h3 className="text-[20px] font-semibold text-ink transition-colors group-hover:text-brand">{it.title}</h3>
+                    <h3 className="text-[20px] font-semibold text-ink transition-colors group-hover:text-sky">{it.title}</h3>
                     <p className="mt-1 text-[14px] text-body">{it.sub}</p>
                   </div>
-                  <svg aria-hidden width="20" height="20" viewBox="0 0 24 24" fill="none" className="mb-1 shrink-0 text-brand transition-transform duration-500 group-hover:-translate-x-1.5"><path d="M19 12H5m0 0 6-6m-6 6 6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  <svg aria-hidden width="20" height="20" viewBox="0 0 24 24" fill="none" className="mb-1 shrink-0 text-sky transition-transform duration-500 group-hover:-translate-x-1.5"><path d="M19 12H5m0 0 6-6m-6 6 6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
               </Link>
             </div>

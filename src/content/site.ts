@@ -48,7 +48,7 @@ export const nav = [
       { href: '/products/wpc-doors/', label: 'أبواب WPC' },
       { href: '/products/upvc/', label: 'أبواب وشبابيك UPVC' },
       { href: '/products/aluminium-glass/', label: 'الألمنيوم والزجاج والواجهات' },
-      { href: '/door-studio/', label: 'استوديو الأبواب ثلاثي الأبعاد' },
+      { href: '/door-studio/', label: 'استوديو الأبواب والشبابيك 3D' },
     ],
   },
   { href: '/works/', label: 'أعمالنا' },

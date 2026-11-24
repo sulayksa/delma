@@ -29,11 +29,11 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 border-b transition-[height,background-color,border-color] duration-500 ease-[var(--ease-out-soft)] ${scrolled || open ? 'h-[68px] border-line bg-white' : 'h-[88px] border-transparent bg-white/0'}`}
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-[height,background-color,border-color] duration-500 ease-[var(--ease-out-soft)] ${scrolled || open ? 'h-[68px] border-line bg-paper/85 backdrop-blur-md' : 'h-[88px] border-transparent bg-white/0'}`}
       >
         <div className="wrap flex h-full items-center justify-between gap-6">
           <Link href="/" aria-label={`${company.nameAr} — الرئيسية`} className="shrink-0">
-            <img src={asset('/img/logo-mark.png')} alt={company.nameAr} width={440} height={244}
+            <img src={asset('/img/logo-mark-white.png')} alt={company.nameAr} width={440} height={244}
               className={`w-auto transition-[height] duration-500 ease-[var(--ease-out-soft)] ${scrolled ? 'h-9' : 'h-11'}`} />
           </Link>
 
@@ -45,17 +45,17 @@ export function Header() {
                   <Link href={n.href} aria-current={isActive(n.href) ? 'page' : undefined}
                     aria-haspopup={n.children ? 'true' : undefined} aria-expanded={n.children ? drop : undefined}
                     onFocus={() => n.children && setDrop(true)}
-                    className={`relative py-2 text-[15px] transition-colors duration-300 hover:text-brand ${isActive(n.href) ? 'text-brand' : 'text-ink'}`}>
+                    className={`relative py-2 text-[15px] transition-colors duration-300 hover:text-sky ${isActive(n.href) ? 'text-sky' : 'text-ink'}`}>
                     {n.label}
                     <span className={`absolute -bottom-0.5 right-0 h-px bg-sky transition-[width] duration-500 ease-[var(--ease-out-soft)] ${isActive(n.href) ? 'w-full' : 'w-0'}`} />
                   </Link>
                   {n.children ? (
                     <div className={`absolute right-[-20px] top-full pt-4 transition-[opacity,transform] duration-300 ease-[var(--ease-out-soft)] ${drop ? 'pointer-events-auto opacity-100 translate-y-0' : 'pointer-events-none opacity-0 -translate-y-1'}`}>
-                      <ul className="w-[290px] border border-line bg-white py-3 shadow-[0_18px_40px_rgba(10,26,58,0.08)]">
+                      <ul className="w-[290px] border border-line bg-paper py-3 shadow-[0_18px_40px_rgba(10,26,58,0.08)]">
                         {n.children.map((c, i) => (
                           <li key={c.href}>
                             <Link href={c.href} onBlur={() => i === n.children!.length - 1 && setDrop(false)}
-                              className="group flex items-center justify-between px-5 py-3 text-[15px] text-ink transition-colors hover:bg-mist hover:text-brand">
+                              className="group flex items-center justify-between px-5 py-3 text-[15px] text-ink transition-colors hover:bg-mist hover:text-sky">
                               {c.label}<span className="num text-[11px] text-muted">0{i + 1}</span>
                             </Link>
                           </li>
@@ -69,7 +69,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <Link href="/quote/" className="hidden h-11 items-center bg-brand px-5 text-[14px] font-medium text-white transition-colors duration-300 hover:bg-navy sm:inline-flex">
+            <Link href="/quote/" className="hidden h-11 items-center bg-sky text-navy px-5 text-[14px] font-medium transition-colors duration-300 hover:bg-white sm:inline-flex">
               اطلب عرض سعر
             </Link>
             <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'إغلاق القائمة' : 'فتح القائمة'}
@@ -83,13 +83,13 @@ export function Header() {
 
       {/* mobile menu */}
       <div id="mobile-menu" aria-hidden={!open}
-        className={`fixed inset-0 z-40 bg-white pt-[68px] transition-[opacity,visibility] duration-500 ease-[var(--ease-out-soft)] lg:hidden ${open ? 'visible opacity-100' : 'invisible opacity-0'}`}>
+        className={`fixed inset-0 z-40 bg-paper pt-[68px] transition-[opacity,visibility] duration-500 ease-[var(--ease-out-soft)] lg:hidden ${open ? 'visible opacity-100' : 'invisible opacity-0'}`}>
         <nav aria-label="قائمة الجوال" className="wrap flex h-full flex-col overflow-y-auto pb-10 pt-6">
           <ul>
             {nav.map((n, i) => (
               <li key={n.href} className="border-b border-line"
                 style={{ transition: 'transform .6s var(--ease-out-soft), opacity .6s', transitionDelay: open ? `${60 + i * 40}ms` : '0ms', transform: open ? 'none' : 'translateY(12px)', opacity: open ? 1 : 0 }}>
-                <Link href={n.href} tabIndex={open ? 0 : -1} className={`flex items-center justify-between py-5 text-[22px] font-medium ${isActive(n.href) ? 'text-brand' : 'text-ink'}`}>
+                <Link href={n.href} tabIndex={open ? 0 : -1} className={`flex items-center justify-between py-5 text-[22px] font-medium ${isActive(n.href) ? 'text-sky' : 'text-ink'}`}>
                   {n.label}<span className="num text-[12px] text-muted">0{i + 1}</span>
                 </Link>
                 {n.children ? (

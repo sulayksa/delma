@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { ContactFab } from '@/components/ContactFab';
 import { Providers } from '@/components/Providers';
+import { BlueprintBg } from '@/components/BlueprintBg';
 import { company } from '@/content/site';
 import { SITE_URL, asset } from '@/lib/paths';
 
@@ -39,12 +39,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ar" dir="rtl">
       <body>
-        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:right-4 focus:top-4 focus:z-[60] focus:bg-white focus:px-4 focus:py-2">تخطَّ إلى المحتوى</a>
+        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:right-4 focus:top-4 focus:z-[60] focus:bg-paper focus:px-4 focus:py-2">تخطَّ إلى المحتوى</a>
+        <BlueprintBg />
         <Providers>
           <Header />
           <main id="main">{children}</main>
           <Footer />
-          <ContactFab />
         </Providers>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} />
       </body>
