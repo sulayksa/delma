@@ -22,7 +22,7 @@
   --color-body: #3C4656;
   --color-muted: #586273;
   --color-line: #DFE5EE;
-  --color-gold: #B08A3A;
+  --color-gold: #8C6A22;
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -133,7 +133,7 @@ html.lenis { scroll-behavior: auto; }
 .on-dark .btn-primary:hover { background: #fff; }
 
 /* leadership: editorial profile */
-.leader-flutes { background-image: repeating-linear-gradient(90deg, rgba(0,62,154,0.045) 0 1px, transparent 1px 28px);
+.leader-flutes { background: linear-gradient(90deg, transparent 0 18%, rgba(255,255,255,0.55) 18% 30%, transparent 30% 70%, rgba(255,255,255,0.4) 70% 80%, transparent 80%);
   -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
   transform: translate3d(0, calc((1 - var(--lp)) * 30px), 0); }
 .leader-photo { transform: translate3d(-50%, calc((1 - var(--lp)) * 14%), 0) scale(calc(0.96 + var(--lp) * 0.04));
