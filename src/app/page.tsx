@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Img } from '@/components/Img';
 import { Reveal } from '@/components/Reveal';
 import { HeroHQ } from '@/components/HeroHQ';
-import { HScroll } from '@/components/HScroll';
+import { Marquee } from '@/components/Marquee';
 import { ServicesList } from '@/components/ServicesList';
 import { StudioTeaser } from '@/components/StudioTeaser';
 import { LeaderSpotlight } from '@/components/LeaderSpotlight';
@@ -39,8 +39,8 @@ export default function Home() {
               <Reveal delay={120} className="mt-10"><TextLink href="/about/">تعرّف على المؤسسة</TextLink></Reveal>
             </div>
             <div className="grid grid-cols-5 gap-4 lg:col-span-6 lg:col-start-7">
-              <Reveal img className="col-span-3"><div className="relative aspect-[3/4] overflow-hidden"><Img img={images.showroomWide} sizes="35vw" className="absolute inset-0 h-full w-full" position="30% 50%" /></div></Reveal>
-              <Reveal img delay={150} className="col-span-2 self-end"><div className="relative aspect-[3/4] overflow-hidden"><Img img={images.hq} sizes="25vw" className="absolute inset-0 h-full w-full" position="62% 50%" /></div>
+              <Reveal img className="col-span-3"><div className="lux relative aspect-[3/4] overflow-hidden"><Img img={images.showroomWide} sizes="35vw" className="absolute inset-0 h-full w-full" position="30% 50%" /></div></Reveal>
+              <Reveal img delay={150} className="col-span-2 self-end"><div className="lux relative aspect-[3/4] overflow-hidden"><Img img={images.hq} sizes="25vw" className="absolute inset-0 h-full w-full" position="62% 50%" /></div>
                 <p className="mt-3 text-[13px] text-muted">المقر والمعرض — حي السعادة</p></Reveal>
             </div>
           </div>
@@ -58,7 +58,7 @@ export default function Home() {
       <StudioTeaser />
       <WhyDelma image={images.showroomCorner} />
 
-      <HScroll items={featured} heading={
+      <Marquee items={featured} heading={
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead kicker="selected" title="منتجات مختارة" lead="أربعة موديلات من أبواب WPC، إلى جانب شبابيك UPVC وحلول الألمنيوم والزجاج." />
           <TextLink href="/products/">جميع المنتجات</TextLink>
@@ -78,7 +78,7 @@ export default function Home() {
               const ar = ['aspect-[3/4]', 'aspect-[4/3]', 'aspect-[3/4]', 'aspect-square', 'aspect-[4/3]'][i] + ' md:aspect-auto md:h-full';
               return (
                 <Reveal img key={w.src + i} delay={i * 70} className={`${span} ${i === 0 ? 'col-span-2' : ''}`}>
-                  <Link href="/works/" className="zoom group relative block overflow-hidden bg-mist md:h-full">
+                  <Link href="/works/" className="lux zoom group relative block overflow-hidden md:h-full">
                     <div className={`relative ${ar}`}><Img img={w} sizes="(min-width:768px) 33vw, 50vw" className="absolute inset-0 h-full w-full" /></div>
                     <span className="absolute bottom-0 right-0 bg-white/95 px-3 py-1.5 text-[12px] text-ink opacity-0 transition-opacity duration-500 group-hover:opacity-100">{w.tag}</span>
                   </Link>

@@ -21,7 +21,7 @@ export default function Page() {
           <div className="lg:col-span-4">
             <Reveal><SectionHead kicker="SOLUTIONS" title="حلول للواجهات والأبواب والنوافذ" /></Reveal>
             <Reveal img delay={100} className="mt-10 hidden lg:block">
-              <div className="relative aspect-square overflow-hidden"><Img img={aluminium.hero} sizes="30vw" className="absolute inset-0 h-full w-full" /></div>
+              <div className="lux relative aspect-square overflow-hidden"><Img img={aluminium.hero} sizes="30vw" className="absolute inset-0 h-full w-full" /></div>
             </Reveal>
           </div>
           <ol className="lg:col-span-7 lg:col-start-6">

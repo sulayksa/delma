@@ -17,7 +17,7 @@ export function ProductHero({ kicker, title, intro, image, crumbs }: { kicker: s
           <div className="mt-9 flex flex-wrap gap-3"><Button href="/quote/">اطلب عرض سعر</Button><Button href="/catalogue/" variant="ghost">كتالوج الألوان</Button></div>
         </div>
         <Reveal img className="lg:col-span-6">
-          <div className="relative aspect-[4/3] overflow-hidden"><Img img={image} priority sizes="(min-width:1024px) 50vw, 100vw" className="absolute inset-0 h-full w-full" /></div>
+          <div className="lux relative aspect-[4/3] overflow-hidden"><Img img={image} priority sizes="(min-width:1024px) 50vw, 100vw" className="absolute inset-0 h-full w-full" /></div>
         </Reveal>
       </div>
     </section>
@@ -33,7 +33,7 @@ export function Models({ title, kicker, items, contain = true, note }: { title: 
         <ul className="mt-[clamp(40px,6vw,72px)] grid grid-cols-2 gap-x-5 gap-y-12 lg:grid-cols-4">
           {items.map((m, i) => (
             <Reveal as="li" key={m.name} delay={i * 70} className="group">
-              <div className={`zoom relative aspect-[3/4] overflow-hidden ${contain ? 'bg-mist' : 'bg-mist'}`}>
+              <div className="lux zoom relative aspect-[3/4] overflow-hidden">
                 <Img img={m.image} fit={contain ? 'contain' : 'cover'} sizes="(min-width:1024px) 25vw, 50vw" className={`absolute inset-0 h-full w-full ${contain ? 'p-[8%]' : ''}`} />
               </div>
               <div className="mt-5 flex items-start justify-between gap-3 border-t border-line pt-4">
@@ -63,7 +63,7 @@ export function Related({ current }: { current: string }) {
           {list.map((s, i) => (
             <Reveal key={s.slug} delay={i * 80}>
               <Link href={`/products/${s.slug}/`} className="group grid grid-cols-5 items-center gap-5 border-t border-line pt-6">
-                <div className="zoom relative col-span-2 aspect-[4/3] overflow-hidden bg-mist"><Img img={s.image} sizes="20vw" className="absolute inset-0 h-full w-full" /></div>
+                <div className="lux zoom relative col-span-2 aspect-[4/3] overflow-hidden"><Img img={s.image} sizes="20vw" className="absolute inset-0 h-full w-full" /></div>
                 <div className="col-span-3">
                   <span className="num text-[12px] text-muted">{s.no}</span>
                   <h3 className="t-h3 mt-1 text-ink transition-colors group-hover:text-accent">{s.title}</h3>

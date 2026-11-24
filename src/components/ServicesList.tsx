@@ -42,7 +42,7 @@ export function ServicesList({ items, images }: { items: S[]; images: ImgT[] }) 
             <SplitWords text={s.title} />
           </h3>
           <p className="relative text-[16px] leading-8 text-body lg:col-span-4 lg:col-start-9"><SplitWords text={s.lead} dim={0.2} /></p>
-          <div className="relative aspect-[16/10] overflow-hidden lg:hidden"><Img img={images[i]} sizes="100vw" className="absolute inset-0 h-full w-full" /></div>
+          <div className="lux relative aspect-[16/10] overflow-hidden lg:hidden"><Img img={images[i]} sizes="100vw" className="absolute inset-0 h-full w-full" /></div>
         </Link>
       ))}
       {/* cursor-following framed photo (desktop) */}

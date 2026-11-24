@@ -103,7 +103,7 @@ export function DoorStudio() {
   return (
     <section className="relative pt-[68px]">
       <div className="grid lg:h-[calc(100svh-68px)] lg:min-h-[660px] lg:grid-cols-[420px_minmax(0,1fr)]">
-        <div ref={stage} data-lenis-prevent
+        <div ref={stage}
           className="relative h-[66svh] min-h-[440px] touch-none select-none bg-[radial-gradient(110%_85%_at_55%_38%,#ffffff_0%,#eef1f5_52%,#d9dfe8_100%)] lg:order-2 lg:h-auto">
           <canvas ref={canvas} className="absolute inset-0 h-full w-full cursor-grab active:cursor-grabbing" role="img" aria-label={`نموذج ثلاثي الأبعاد: ${catName} — ${cur.name}`} />
           {!ready && !failed ? (
@@ -132,7 +132,7 @@ export function DoorStudio() {
           ) : null}
         </div>
 
-        <aside className="relative z-[1] border-line bg-paper lg:order-1 lg:overflow-y-auto lg:border-l" data-lenis-prevent>
+        <aside className="relative z-[1] border-line bg-paper lg:order-1 lg:overflow-y-auto lg:border-l">
           <div className="p-6 sm:p-8">
             <h1 className="text-[30px] font-semibold leading-tight text-ink">استوديو الأبواب والشبابيك</h1>
             <p className="mt-2 text-[15px] leading-7 text-body">اختر المنتج واللون، دوّره من كل الاتجاهات، والمسه ليفتح ويُغلق.</p>

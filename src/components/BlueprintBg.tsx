@@ -16,13 +16,12 @@ export function BlueprintBg() {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let W = 0, H = 0, dpr = 1, raf = 0;
     const mouse = { x: -9999, y: -9999, tx: -9999, ty: -9999, nx: 0, ny: 0, tnx: 0, tny: 0 };
-    let scroll = window.scrollY, sy = scroll;
     let glyphs: Glyph[] = [];
 
     const seed = () => {
       const n = W < 768 ? 7 : 13; glyphs = [];
       for (let i = 0; i < n; i++) {
-        glyphs.push({ kind: i % 5, x: Math.random() * W, y: Math.random() * H * 1.6, s: 70 + Math.random() * (W < 768 ? 70 : 130),
+        glyphs.push({ kind: i % 5, x: Math.random() * W, y: Math.random() * H, s: 70 + Math.random() * (W < 768 ? 70 : 130),
           z: 0.15 + Math.random() * 0.85, r: (Math.random() - 0.5) * 0.5, vr: (Math.random() - 0.5) * 0.0006 });
       }
     };
@@ -56,13 +55,12 @@ export function BlueprintBg() {
 
     const draw = (t: number) => {
       ctx.clearRect(0, 0, W, H);
-      sy += (scroll - sy) * 0.12;
       mouse.x += (mouse.tx - mouse.x) * 0.14; mouse.y += (mouse.ty - mouse.y) * 0.14;
       mouse.nx += (mouse.tnx - mouse.nx) * 0.05; mouse.ny += (mouse.tny - mouse.ny) * 0.05;
 
-      // drafting grid (parallax with scroll)
+      // drafting grid (follows the pointer only)
       const step = W < 768 ? 48 : 72;
-      const ox = (-mouse.nx * 10) % step, oy = (-sy * 0.25 - mouse.ny * 10) % step;
+      const ox = (-mouse.nx * 10) % step, oy = (-mouse.ny * 10) % step;
       const grid = (alpha: number) => {
         ctx.strokeStyle = `rgba(0,62,154,${alpha})`; ctx.lineWidth = 1; ctx.beginPath();
         for (let x = ox; x < W; x += step) { ctx.moveTo(Math.round(x) + 0.5, 0); ctx.lineTo(Math.round(x) + 0.5, H); }
@@ -81,8 +79,8 @@ export function BlueprintBg() {
 
       // floating plan symbols
       for (const g of glyphs) {
-        const span = H * 1.6;
-        let y = (g.y - sy * g.z * 0.6) % span; if (y < -200) y += span;
+        const span = H * 1.05;
+        let y = g.y % span; if (y < -200) y += span;
         const x = g.x + mouse.nx * 40 * g.z;
         const yy = y + mouse.ny * 30 * g.z;
         const d = Math.hypot(x - mouse.x, yy - mouse.y);
@@ -93,12 +91,12 @@ export function BlueprintBg() {
       }
     };
 
-    // draw only while something is still moving (scroll easing, pointer easing); idle = zero cost
+    // draw only while the pointer eases; idle = zero cost
     const loop = (t: number) => {
       raf = 0;
       if (document.hidden) return;
       draw(t);
-      const moving = Math.abs(scroll - sy) > 0.3 || Math.abs(mouse.tx - mouse.x) > 0.3 || Math.abs(mouse.ty - mouse.y) > 0.3
+      const moving = Math.abs(mouse.tx - mouse.x) > 0.3 || Math.abs(mouse.ty - mouse.y) > 0.3
         || Math.abs(mouse.tnx - mouse.nx) > 0.001 || Math.abs(mouse.tny - mouse.ny) > 0.001;
       if (moving) raf = requestAnimationFrame(loop);
     };
@@ -108,17 +106,15 @@ export function BlueprintBg() {
       mouse.tnx = e.clientX / W - 0.5; mouse.tny = e.clientY / H - 0.5; kick();
     };
     const onLeave = () => { mouse.tx = mouse.ty = -9999; mouse.x = mouse.y = -9999; kick(); };
-    const onScroll = () => { scroll = window.scrollY; kick(); };
 
     resize(); draw(0);
     window.addEventListener('resize', () => { resize(); draw(0); });
     if (!reduce) {
       window.addEventListener('pointermove', onMove, { passive: true });
       document.addEventListener('pointerleave', onLeave);
-      window.addEventListener('scroll', onScroll, { passive: true });
       kick();
     }
-    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); window.removeEventListener('pointermove', onMove); document.removeEventListener('pointerleave', onLeave); window.removeEventListener('scroll', onScroll); };
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); window.removeEventListener('pointermove', onMove); document.removeEventListener('pointerleave', onLeave); };
   }, []);
   return <canvas ref={ref} aria-hidden className="pointer-events-none fixed inset-0 z-0" />;
 }

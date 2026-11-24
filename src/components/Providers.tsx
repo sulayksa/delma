@@ -1,5 +1,4 @@
 'use client';
-import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { usePathname, useRouter } from 'next/navigation';
@@ -9,13 +8,12 @@ import { BASE, asset } from '@/lib/paths';
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Motion stack (web-motion-stack): Lenis smooth scroll driven by GSAP's ticker (one clock),
- * ScrollTrigger kept in sync, and a cinematic page transition — a navy curtain wipes up,
+ * Motion: native browser scrolling (fastest, never lags behind the wheel/trackpad),
+ * plus a cinematic GSAP page transition — a navy curtain wipes up,
  * the Delma mark draws in, the route changes underneath, then the curtain lifts away.
  * Everything is skipped for prefers-reduced-motion.
  */
 export function Providers({ children }: { children: ReactNode }) {
-  const lenis = useRef<Lenis | null>(null);
   const curtain = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const path = usePathname();
@@ -25,21 +23,11 @@ export function Providers({ children }: { children: ReactNode }) {
   useEffect(() => {
     reduce.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.documentElement.classList.add('gs-on');
-    if (reduce.current) return;
-    const l = new Lenis({ lerp: 0.2, wheelMultiplier: 1, autoRaf: false, anchors: true });
-    lenis.current = l;
-    l.on('scroll', ScrollTrigger.update);
-    const tick = (t: number) => l.raf(t * 1000);
-    gsap.ticker.add(tick); gsap.ticker.lagSmoothing(0);
-    document.querySelectorAll('dialog, #mobile-menu, [data-scroll-own]').forEach((el) => el.setAttribute('data-lenis-prevent', ''));
-    const refresh = () => ScrollTrigger.refresh();
-    document.fonts?.ready.then(refresh); window.addEventListener('load', refresh);
-    return () => { gsap.ticker.remove(tick); l.destroy(); lenis.current = null; window.removeEventListener('load', refresh); };
   }, []);
 
   // after each route change: jump to top, lift the curtain, re-measure triggers
   useEffect(() => {
-    lenis.current?.scrollTo(0, { immediate: true, force: true }); window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
     const c = curtain.current; if (!c) return;
     if (busy.current && !reduce.current) {
       const tl = gsap.timeline({ onComplete: () => { busy.current = false; gsap.set(c, { visibility: 'hidden' }); } });
@@ -60,7 +48,7 @@ export function Providers({ children }: { children: ReactNode }) {
       const url = new URL(a.href, location.href);
       if (url.origin !== location.origin) return;
       if (url.pathname === location.pathname) {
-        if (url.hash) { e.preventDefault(); const el = document.querySelector(decodeURIComponent(url.hash)); if (el) lenis.current ? lenis.current.scrollTo(el as HTMLElement, { offset: -80 }) : el.scrollIntoView({ behavior: 'smooth' }); }
+        if (url.hash) { e.preventDefault(); const el = document.querySelector(decodeURIComponent(url.hash)); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
         return;
       }
       if (BASE && !url.pathname.startsWith(BASE + '/')) return;

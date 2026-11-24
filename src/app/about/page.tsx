@@ -40,7 +40,7 @@ export default function Page() {
             </Reveal>
           </div>
           <div className="lg:col-span-5 lg:col-start-8">
-            <Reveal img><div className="relative aspect-[4/5] overflow-hidden"><Img img={images.hqSign} sizes="(min-width:1024px) 40vw, 100vw" className="absolute inset-0 h-full w-full" position="58% 50%" /></div></Reveal>
+            <Reveal img><div className="lux relative aspect-[4/5] overflow-hidden"><Img img={images.hqSign} sizes="(min-width:1024px) 40vw, 100vw" className="absolute inset-0 h-full w-full" position="58% 50%" /></div></Reveal>
             <p className="mt-3 text-[13px] text-muted">مقر المؤسسة — شارع أبو عبيدة بن الجراح، حي السعادة</p>
           </div>
         </div>

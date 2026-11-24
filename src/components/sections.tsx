@@ -21,7 +21,7 @@ export function ServicesEditorial() {
                 <p className="t-body mt-3 max-w-[44ch]">{s.lead}</p>
               </Reveal>
               <div className="md:col-span-4 md:col-start-8">
-                <div className="zoom relative aspect-[16/10] overflow-hidden bg-mist">
+                <div className="lux zoom relative aspect-[16/10] overflow-hidden">
                   <Img img={s.image} sizes="(min-width:768px) 34vw, 100vw" className="absolute inset-0 h-full w-full" />
                 </div>
               </div>
@@ -46,7 +46,7 @@ export function WhyDelma({ image }: { image: Parameters<typeof Img>[0]['img'] })
         <div className="lg:col-span-5">
           <Reveal><SectionHead kicker="WHY DELMA" title="لماذا دلما؟" lead="نعمل وفق مقاسات ومواصفات معتمدة، ونتابع مع العميل من عرض السعر حتى ما بعد التركيب." /></Reveal>
           <Reveal img delay={120} className="mt-10 hidden lg:block">
-            <div className="relative aspect-[4/5] overflow-hidden"><Img img={image} sizes="40vw" className="absolute inset-0 h-full w-full" /></div>
+            <div className="lux relative aspect-[4/5] overflow-hidden"><Img img={image} sizes="40vw" className="absolute inset-0 h-full w-full" /></div>
           </Reveal>
         </div>
         <ol className="grid content-start gap-x-12 sm:grid-cols-2 lg:col-span-7">

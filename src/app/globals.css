@@ -82,18 +82,13 @@ body { background: var(--color-paper); color: var(--color-ink); font-family: var
 .split.in .split__word { transform: none; opacity: 1; }
 
 /* ---------- 3D image reveal: card tilts up from the floor while its mask opens ---------- */
-.reveal-img { perspective: 1400px; }
-.reveal-img > * { transform-origin: 50% 100%; transform: rotateX(16deg) translate3d(0, 48px, 0) scale(.96); opacity: 0;
+.reveal-img > * { transform: translate3d(0, 28px, 0); opacity: 0;
   transition: clip-path 1.3s var(--ease-out-soft), transform 1.3s var(--ease-out-soft), opacity .8s ease; transition-delay: var(--rv-d, 0ms); }
 .reveal-img.in > * { transform: none; opacity: 1; }
 
 /* page transition curtain (animated with GSAP) */
 .page-curtain { position: fixed; inset: 0; z-index: 90; pointer-events: none; overflow: hidden; }
 
-/* lenis */
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-stopped { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   .split__word { transform: none !important; opacity: 1 !important; }
@@ -122,7 +117,6 @@ body { background: var(--color-paper); }
 @media (prefers-reduced-motion: reduce) { .hero-hq__sweep { animation: none; } }
 
 main > section { overflow-x: clip; }
-html.lenis { scroll-behavior: auto; }
 
 /* dark zones inside the light site (hero, leadership, closing CTA, footer): tokens flip locally */
 .on-dark { --color-ink: #F3F6FB; --color-body: #BAC4D4; --color-muted: #9AA6BB; --color-line: #22355C; --color-accent: #4CC6FF; --color-sky-ink: #4CC6FF;
@@ -139,3 +133,42 @@ html.lenis { scroll-behavior: auto; }
 .leader-photo { transform: translate3d(-50%, calc((1 - var(--lp)) * 14%), 0) scale(calc(0.96 + var(--lp) * 0.04));
   opacity: calc(0.15 + var(--lp) * 0.85); filter: drop-shadow(0 26px 30px rgba(10,26,58,0.18)); transform-origin: 50% 100%; }
 .leader-corner { opacity: var(--lp); transform: scale(calc(0.6 + var(--lp) * 0.4)); transition: none; }
+
+/* ── luxury frame: white mat, gilt inner hairline, gold corner marks, soft lift on hover ── */
+.lux { --mat: clamp(8px, .9vw, 13px); --lux-bg: #fff; --lux-gold: rgb(140 106 34 / .55);
+  position: relative; padding: var(--mat); background: var(--lux-bg); isolation: isolate;
+  box-shadow: 0 0 0 1px rgb(14 26 46 / .07), 0 2px 4px rgb(7 20 48 / .04), 0 26px 50px -30px rgb(7 20 48 / .38);
+  transition: transform .7s var(--ease-out-soft), box-shadow .7s var(--ease-out-soft); }
+.lux > img.absolute { inset: var(--mat); width: calc(100% - 2 * var(--mat)); height: calc(100% - 2 * var(--mat)); }
+.lux img { background: #F1F4F8; }
+.lux::before { content: ''; position: absolute; inset: var(--mat); z-index: 2; pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgb(140 106 34 / .28); }
+.lux::after { content: ''; position: absolute; inset: calc(var(--mat) * .38); z-index: 2; pointer-events: none; --c: 15px; --t: 1.5px;
+  background:
+    linear-gradient(var(--lux-gold), var(--lux-gold)) top right / var(--c) var(--t) no-repeat,
+    linear-gradient(var(--lux-gold), var(--lux-gold)) top right / var(--t) var(--c) no-repeat,
+    linear-gradient(var(--lux-gold), var(--lux-gold)) top left / var(--c) var(--t) no-repeat,
+    linear-gradient(var(--lux-gold), var(--lux-gold)) top left / var(--t) var(--c) no-repeat,
+    linear-gradient(var(--lux-gold), var(--lux-gold)) bottom right / var(--c) var(--t) no-repeat,
+    linear-gradient(var(--lux-gold), var(--lux-gold)) bottom right / var(--t) var(--c) no-repeat,
+    linear-gradient(var(--lux-gold), var(--lux-gold)) bottom left / var(--c) var(--t) no-repeat,
+    linear-gradient(var(--lux-gold), var(--lux-gold)) bottom left / var(--t) var(--c) no-repeat; }
+.lux > span.absolute { z-index: 3; }
+.lux > span.absolute.bottom-0 { bottom: var(--mat); right: var(--mat); }
+.lux.zoom img, .lux.zoom:hover img, .group:hover .lux img { transform: none; }
+a:hover > .lux, .group:hover > .lux, a.lux:hover, button.lux:hover, .lux.zoom:hover { transform: translate3d(0, -5px, 0);
+  box-shadow: 0 0 0 1px rgb(140 106 34 / .22), 0 4px 8px rgb(7 20 48 / .05), 0 40px 70px -34px rgb(7 20 48 / .45); }
+.on-dark .lux { --lux-bg: #0D1F44; --lux-gold: rgb(201 162 74 / .7); }
+@media (prefers-reduced-motion: reduce) { .lux { transition: none; } }
+
+/* ── featured products: auto-moving strip (independent of scroll) ── */
+.mq { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.mq__track { display: flex; width: max-content; padding-block: 14px 8px; animation: mq-run 46s linear infinite; will-change: transform; }
+.mq__item { padding-inline-end: clamp(18px, 2.2vw, 32px); }
+@keyframes mq-run { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(50%, 0, 0); } }
+.mq:hover .mq__track, .mq:focus-within .mq__track, .mq:active .mq__track, .mq-off .mq__track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .mq { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .mq__track { animation: none; padding-inline: 20px; }
+  .mq__item[aria-hidden] { display: none; }
+}

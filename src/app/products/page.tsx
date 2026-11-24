@@ -29,7 +29,7 @@ export default function Page() {
           {services.map((s, i) => (
             <article key={s.slug} className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
               <Reveal img className={`lg:col-span-7 ${i % 2 ? 'lg:order-2' : ''}`}>
-                <Link href={`/products/${s.slug}/`} className="zoom relative block aspect-[16/11] overflow-hidden bg-mist">
+                <Link href={`/products/${s.slug}/`} className="lux zoom relative block aspect-[16/11] overflow-hidden">
                   <Img img={i === 0 ? wpc.hero : i === 1 ? upvc.hero : s.image} sizes="(min-width:1024px) 58vw, 100vw" className="absolute inset-0 h-full w-full" />
                 </Link>
               </Reveal>

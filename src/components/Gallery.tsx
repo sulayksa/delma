@@ -29,7 +29,7 @@ export function Gallery({ items, filters = false }: { items: Item[]; filters?: b
         {list.map((it, i) => (
           <li key={it.src + tag + i} className="mb-4 break-inside-avoid md:mb-5">
             <Reveal img delay={(i % 3) * 70}>
-              <button type="button" onClick={() => setOpen(i)} className="zoom group relative block w-full overflow-hidden bg-mist text-right" aria-label={`عرض الصورة: ${it.alt}`}>
+              <button type="button" onClick={() => setOpen(i)} className="lux zoom group relative block w-full overflow-hidden text-right" aria-label={`عرض الصورة: ${it.alt}`}>
                 <Img img={it} sizes="(min-width:768px) 33vw, 50vw" className="block h-auto w-full" />
                 {it.tag ? <span className="absolute bottom-0 right-0 bg-white/95 px-3 py-1.5 text-[12px] text-ink">{it.tag}</span> : null}
               </button>
