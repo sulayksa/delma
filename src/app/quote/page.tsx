@@ -19,7 +19,7 @@ export default function Page() {
           <aside className="lg:col-span-3 lg:col-start-10">
             <h2 className="text-[15px] font-semibold text-ink">تفضّل التواصل المباشر؟</h2>
             <ul className="mt-5 space-y-4 text-[15px]">
-              <li><a href={waHref(company.phones.whatsapp)} target="_blank" rel="noopener noreferrer" className="ulink text-sky">واتساب <span className="num">{company.phones.whatsapp}</span></a></li>
+              <li><a href={waHref(company.phones.whatsapp)} target="_blank" rel="noopener noreferrer" className="ulink text-accent">واتساب <span className="num">{company.phones.whatsapp}</span></a></li>
               <li><a href={telHref(company.phones.primary)} className="ulink num text-ink">{company.phones.primary}</a></li>
               <li><a href={telHref(company.phones.secondary)} className="ulink num text-ink">{company.phones.secondary}</a></li>
             </ul>

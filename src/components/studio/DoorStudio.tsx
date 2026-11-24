@@ -139,7 +139,7 @@ export function DoorStudio() {
             <div role="tablist" aria-label="الفئة" className="mt-7 grid grid-cols-3 border border-line">
               {CATS.map((c) => (
                 <button key={c.id} type="button" role="tab" aria-selected={cat === c.id} onClick={() => setProduct(PRODUCTS.find((p) => p.cat === c.id)!.id)}
-                  className={`h-12 text-[14px] transition-colors ${cat === c.id ? 'bg-sky font-semibold text-navy' : 'text-ink hover:bg-white/5'}`}>{c.name}</button>
+                  className={`h-12 text-[14px] transition-colors ${cat === c.id ? 'bg-sky font-semibold text-navy' : 'text-ink hover:bg-mist'}`}>{c.name}</button>
               ))}
             </div>
             <fieldset className="mt-7">
@@ -147,16 +147,16 @@ export function DoorStudio() {
               <div className={`mt-3 grid gap-2 ${cat === 'wpc' ? 'grid-cols-4' : cat === 'upvc' ? 'grid-cols-2' : 'grid-cols-3'}`}>
                 {PRODUCTS.filter((p) => p.cat === cat).map((p) => (
                   <button key={p.id} type="button" onClick={() => setProduct(p.id)} aria-pressed={product === p.id}
-                    className={`group flex flex-col items-center border px-1 pb-2 pt-2 transition-colors ${product === p.id ? 'border-sky bg-white/5' : 'border-line hover:border-ink/30'}`}>
+                    className={`group flex flex-col items-center border px-1 pb-2 pt-2 transition-colors ${product === p.id ? 'border-sky bg-mist' : 'border-line hover:border-ink/30'}`}>
                     <span className="block h-[68px] w-full overflow-hidden bg-white"><img src={asset(`/img/${p.img}.webp`)} alt="" loading="lazy" className={`h-full w-full ${cat === 'wpc' ? 'object-contain' : 'object-cover'}`} /></span>
-                    <span className={`mt-2 text-[13px] ${product === p.id ? 'font-semibold text-sky' : 'text-ink'}`}>{p.name}</span>
+                    <span className={`mt-2 text-[13px] ${product === p.id ? 'font-semibold text-accent' : 'text-ink'}`}>{p.name}</span>
                   </button>
                 ))}
               </div>
               <p className="mt-2 text-[13px] text-muted">الاستخدام: {cur.use}</p>
             </fieldset>
             <fieldset className="mt-7">
-              <legend className="flex w-full items-baseline justify-between text-[13px] font-semibold text-ink">اللون <span className={`font-normal text-sky ${cat === 'wpc' ? 'num' : ''}`}>{colorName}</span></legend>
+              <legend className="flex w-full items-baseline justify-between text-[13px] font-semibold text-ink">اللون <span className={`font-normal text-accent ${cat === 'wpc' ? 'num' : ''}`}>{colorName}</span></legend>
               {cat === 'wpc' ? (
                 <div className="mt-3 grid grid-cols-7 gap-1.5">
                   {colors.map((c) => (
@@ -170,7 +170,7 @@ export function DoorStudio() {
                 <div className="mt-3 grid grid-cols-4 gap-2">
                   {UPVC_COLORS.map((c) => (
                     <button key={c.id} type="button" onClick={() => setUpvcColor(c.id)} aria-pressed={upvcColor === c.id}
-                      className={`flex flex-col items-center gap-2 border py-3 text-[12px] transition-colors ${upvcColor === c.id ? 'border-sky text-sky' : 'border-line text-ink hover:border-ink/30'}`}>
+                      className={`flex flex-col items-center gap-2 border py-3 text-[12px] transition-colors ${upvcColor === c.id ? 'border-sky text-accent' : 'border-line text-ink hover:border-ink/30'}`}>
                       <span className="h-7 w-7 rounded-full border border-white/20" style={c.swatch ? { background: c.swatch } : { backgroundImage: `url(${asset('/img/colors/P04-sm.webp')})`, backgroundSize: 'cover' }} />
                       {c.name}
                     </button>
@@ -184,14 +184,14 @@ export function DoorStudio() {
                 <div className="mt-3 flex gap-2">
                   {FINISHES.map((f) => (
                     <button key={f.id} type="button" onClick={() => setFinish(f.id)} aria-pressed={finish === f.id}
-                      className={`flex h-11 flex-1 items-center justify-center gap-2 border text-[13px] transition-colors ${finish === f.id ? 'border-sky text-sky' : 'border-line text-ink hover:border-ink/30'}`}>
+                      className={`flex h-11 flex-1 items-center justify-center gap-2 border text-[13px] transition-colors ${finish === f.id ? 'border-sky text-accent' : 'border-line text-ink hover:border-ink/30'}`}>
                       <span className="h-4 w-4 rounded-full" style={{ background: f.swatch }} />{f.name}
                     </button>
                   ))}
                 </div>
               </fieldset>
             ) : null}
-            <Link href={quoteHref} className="group mt-9 flex h-[54px] items-center justify-between bg-sky px-6 text-[15px] font-medium text-navy transition-colors hover:bg-white">
+            <Link href={quoteHref} className="group mt-9 flex h-[54px] items-center justify-between btn-primary px-6 text-[15px] font-medium transition-colors">
               اطلب عرض سعر لهذا الاختيار
               <svg aria-hidden width="18" height="18" viewBox="0 0 24 24" fill="none" className="transition-transform duration-500 group-hover:-translate-x-1.5"><path d="M19 12H5m0 0 6-6m-6 6 6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </Link>

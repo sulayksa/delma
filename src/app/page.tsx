@@ -80,7 +80,7 @@ export default function Home() {
                 <Reveal img key={w.src + i} delay={i * 70} className={`${span} ${i === 0 ? 'col-span-2' : ''}`}>
                   <Link href="/works/" className="zoom group relative block overflow-hidden bg-mist md:h-full">
                     <div className={`relative ${ar}`}><Img img={w} sizes="(min-width:768px) 33vw, 50vw" className="absolute inset-0 h-full w-full" /></div>
-                    <span className="absolute bottom-0 right-0 bg-navy/85 px-3 py-1.5 text-[12px] text-ink opacity-0 transition-opacity duration-500 group-hover:opacity-100">{w.tag}</span>
+                    <span className="absolute bottom-0 right-0 bg-white/95 px-3 py-1.5 text-[12px] text-ink opacity-0 transition-opacity duration-500 group-hover:opacity-100">{w.tag}</span>
                   </Link>
                 </Reveal>
               );

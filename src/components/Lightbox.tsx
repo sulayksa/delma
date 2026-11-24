@@ -21,11 +21,11 @@ export function Lightbox({ open, onClose, onPrev, onNext, label, children, capti
 
   return (
     <div ref={ref} role="dialog" aria-modal="true" aria-label={label} tabIndex={-1} aria-hidden={!open}
-      className={`fixed inset-0 z-[70] flex flex-col bg-[rgba(10,26,58,0.94)] outline-none transition-[opacity,visibility] duration-500 ease-[var(--ease-out-soft)] ${open ? 'visible opacity-100' : 'invisible opacity-0'}`}
+      className={`on-dark fixed inset-0 z-[70] flex flex-col bg-[rgba(10,26,58,0.94)] outline-none transition-[opacity,visibility] duration-500 ease-[var(--ease-out-soft)] ${open ? 'visible opacity-100' : 'invisible opacity-0'}`}
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
       <div className="flex items-center justify-between px-5 py-4 text-white sm:px-8">
         <div className="text-[14px] text-white/80">{caption}</div>
-        <button type="button" onClick={onClose} className="grid h-11 w-11 place-items-center text-white hover:text-sky" aria-label="إغلاق">
+        <button type="button" onClick={onClose} className="grid h-11 w-11 place-items-center text-white hover:text-accent" aria-label="إغلاق">
           <svg aria-hidden width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>
         </button>
       </div>

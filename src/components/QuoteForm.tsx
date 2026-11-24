@@ -115,7 +115,7 @@ export function QuoteForm() {
             : 'فتحنا لك محادثة واتساب مع المؤسسة وفيها تفاصيل طلبك. اضغط «إرسال» هناك لتصل الرسالة، وأرفق الصور أو المخططات في نفس المحادثة.'}
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          {state === 'whatsapp' ? <a href={waHref(company.phones.whatsapp, message())} target="_blank" rel="noopener noreferrer" className="inline-flex h-[52px] items-center bg-sky text-navy px-7 text-[15px] font-medium hover:bg-white">فتح واتساب مرة أخرى</a> : null}
+          {state === 'whatsapp' ? <a href={waHref(company.phones.whatsapp, message())} target="_blank" rel="noopener noreferrer" className="inline-flex h-[52px] items-center btn-primary px-7 text-[15px] font-medium ">فتح واتساب مرة أخرى</a> : null}
           <button type="button" onClick={() => { setState('idle'); started.current = Date.now(); }} className="inline-flex h-[52px] items-center border border-ink/20 px-7 text-[15px] hover:border-ink">{state === 'sent' ? 'إرسال طلب آخر' : 'تعديل الطلب'}</button>
         </div>
       </div>
@@ -165,7 +165,7 @@ export function QuoteForm() {
           <span className="text-[14px] font-medium text-ink">صور أو مخططات <span className="text-[13px] font-normal text-muted">(اختياري — حتى {MAX_FILES} ملفات، {MAX_MB} ميجابايت لكل ملف)</span></span>
           <label className="mt-2 flex cursor-pointer flex-col items-center justify-center gap-2 border border-dashed border-line bg-mist px-4 py-8 text-center transition-colors hover:border-sky"
             onDragOver={(e) => e.preventDefault()} onDrop={(e) => { e.preventDefault(); addFiles(e.dataTransfer.files); }}>
-            <svg aria-hidden width="26" height="26" viewBox="0 0 24 24" fill="none" className="text-sky"><path d="M12 16V4m0 0-4 4m4-4 4 4M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            <svg aria-hidden width="26" height="26" viewBox="0 0 24 24" fill="none" className="text-accent"><path d="M12 16V4m0 0-4 4m4-4 4 4M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             <span className="text-[15px] text-ink">اسحب الملفات هنا أو اضغط للاختيار</span>
             <span className="text-[13px] text-muted">JPG · PNG · HEIC · PDF</span>
             <input ref={fileInput} type="file" multiple accept="image/*,application/pdf" className="sr-only" onChange={(e) => addFiles(e.target.files)} />
@@ -191,10 +191,10 @@ export function QuoteForm() {
       {err.form ? <p id="form-err" role="alert" className="mt-6 border-r-2 border-[#C0392B] bg-[#FBEFEE] px-4 py-3 text-[14px] text-[#8E2B20]">{err.form}</p> : null}
 
       <div className="mt-8 flex flex-wrap items-center gap-4">
-        <button type="submit" disabled={state === 'sending'} className="inline-flex h-[52px] items-center gap-3 bg-sky text-navy px-8 text-[15px] font-medium transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-60">
+        <button type="submit" disabled={state === 'sending'} className="inline-flex h-[52px] items-center gap-3 btn-primary px-8 text-[15px] font-medium transition-colors  disabled:cursor-not-allowed disabled:opacity-60">
           {state === 'sending' ? 'جارٍ الإرسال…' : ENDPOINT ? 'إرسال الطلب' : 'إرسال الطلب عبر واتساب'}
         </button>
-        <a href={waHref(company.phones.whatsapp)} target="_blank" rel="noopener noreferrer" className="ulink text-[14px] text-sky">أو راسلنا مباشرة على واتساب</a>
+        <a href={waHref(company.phones.whatsapp)} target="_blank" rel="noopener noreferrer" className="ulink text-[14px] text-accent">أو راسلنا مباشرة على واتساب</a>
       </div>
     </form>
   );

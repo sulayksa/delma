@@ -17,7 +17,7 @@ export function ServicesEditorial() {
             <Link key={s.slug} href={`/products/${s.slug}/`} className="group grid items-center gap-6 border-b border-line py-8 md:grid-cols-12 md:gap-10 md:py-10">
               <Reveal delay={i * 60} className="md:col-span-1"><span className="num text-[13px] text-muted">{s.no}</span></Reveal>
               <Reveal delay={i * 60 + 40} className="md:col-span-5">
-                <h3 className="t-h2 !text-[clamp(26px,3vw,40px)] text-ink transition-colors duration-500 group-hover:text-sky">{s.title}</h3>
+                <h3 className="t-h2 !text-[clamp(26px,3vw,40px)] text-ink transition-colors duration-500 group-hover:text-accent">{s.title}</h3>
                 <p className="t-body mt-3 max-w-[44ch]">{s.lead}</p>
               </Reveal>
               <div className="md:col-span-4 md:col-start-8">
@@ -77,7 +77,7 @@ export function ProcessSection({ tone = 'white' }: { tone?: 'white' | 'mist' }) 
 /** Navy closing call-to-action. */
 export function CtaBand() {
   return (
-    <section className="relative overflow-hidden bg-navy">
+    <section className="on-dark relative overflow-hidden bg-navy">
       <div className="wrap grid items-end gap-10 py-[clamp(72px,10vw,140px)] lg:grid-cols-12">
         <div className="lg:col-span-8">
           <h2 className="t-display text-white"><SplitWords text={'ابدأ مشروعك\nبخطوة واضحة'} stagger={80} /></h2>
@@ -132,7 +132,7 @@ function ExecutiveProfile({ person }: { person: Leader }) {
       </Reveal>
       <div className="lg:col-span-6 lg:col-start-7">
         <Reveal><h3 className="t-h1 text-ink">{person.name}</h3></Reveal>
-        <Reveal delay={100}><p className="mt-4 text-[18px] text-sky">{person.role}</p></Reveal>
+        <Reveal delay={100}><p className="mt-4 text-[18px] text-accent">{person.role}</p></Reveal>
         <Reveal delay={140}><div className="mt-8 h-px w-24 bg-sky" /></Reveal>
         {person.bio ? <Reveal delay={180}><p className="t-lead mt-8 max-w-[52ch]">{person.bio}</p></Reveal> : null}
         <Reveal delay={200}><p className="mt-8 text-[15px] leading-8 text-muted">{company.nameAr} · {company.city} · منذ <span className="num">{company.founded}</span></p></Reveal>
@@ -146,7 +146,7 @@ function MemberCard({ person }: { person: Leader }) {
     <Reveal className="group">
       <div className="relative aspect-[4/5] overflow-hidden bg-mist"><Portrait person={person} sizes="33vw" /></div>
       <h3 className="t-h3 mt-5 text-ink">{person.name}</h3>
-      <p className="mt-1 text-[15px] text-sky">{person.role}</p>
+      <p className="mt-1 text-[15px] text-accent">{person.role}</p>
     </Reveal>
   );
 }

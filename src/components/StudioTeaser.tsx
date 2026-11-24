@@ -7,7 +7,7 @@ import { asset } from '@/lib/paths';
 export function StudioTeaser() {
   const doors = ['wpc-plain-white', 'wpc-carved', 'wpc-glass', 'wpc-decor'];
   return (
-    <section className="relative overflow-hidden bg-navy text-white">
+    <section className="on-dark relative overflow-hidden bg-navy text-white">
       <div className="wrap grid items-center gap-12 py-[clamp(72px,10vw,140px)] lg:grid-cols-12">
         <div className="lg:col-span-5">
           <span aria-hidden className="block h-px w-12 bg-sky" />

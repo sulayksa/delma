@@ -42,7 +42,7 @@ export default function Page() {
                   </ul>
                 </Reveal>
                 <Reveal delay={180}>
-                  <Link href={`/products/${s.slug}/`} className="group mt-8 inline-flex items-center gap-2 text-[15px] font-medium text-sky"><span className="ulink">التفاصيل والصور</span>
+                  <Link href={`/products/${s.slug}/`} className="group mt-8 inline-flex items-center gap-2 text-[15px] font-medium text-accent"><span className="ulink">التفاصيل والصور</span>
                     <svg aria-hidden width="18" height="18" viewBox="0 0 24 24" fill="none" className="transition-transform duration-500 group-hover:-translate-x-1.5"><path d="M19 12H5m0 0 6-6m-6 6 6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </Link>
                 </Reveal>

@@ -24,16 +24,17 @@ export function Header() {
   useEffect(() => { setOpen(false); setDrop(false); }, [path]);
   useEffect(() => { document.documentElement.style.overflow = open ? 'hidden' : ''; }, [open]);
 
+  const overHero = false;
   const isActive = (href: string) => (href === '/' ? path === '/' : path?.startsWith(href.replace(/\/$/, '')));
 
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 border-b transition-[height,background-color,border-color] duration-500 ease-[var(--ease-out-soft)] ${scrolled || open ? 'h-[68px] border-line bg-paper/85 backdrop-blur-md' : 'h-[88px] border-transparent bg-white/0'}`}
+        className={`${overHero ? 'on-dark' : ''} fixed inset-x-0 top-0 z-50 border-b transition-[height,background-color,border-color] duration-500 ease-[var(--ease-out-soft)] ${scrolled || open ? 'h-[68px] border-line bg-white/90 backdrop-blur-md' : 'h-[88px] border-transparent bg-white/0'}`}
       >
         <div className="wrap flex h-full items-center justify-between gap-6">
           <Link href="/" aria-label={`${company.nameAr} — الرئيسية`} className="shrink-0">
-            <img src={asset('/img/logo-mark-white.png')} alt={company.nameAr} width={440} height={244}
+            <img src={asset(overHero ? '/img/logo-mark-white.png' : '/img/logo-mark.png')} alt={company.nameAr} width={440} height={244}
               className={`w-auto transition-[height] duration-500 ease-[var(--ease-out-soft)] ${scrolled ? 'h-9' : 'h-11'}`} />
           </Link>
 
@@ -45,7 +46,7 @@ export function Header() {
                   <Link href={n.href} aria-current={isActive(n.href) ? 'page' : undefined}
                     aria-haspopup={n.children ? 'true' : undefined} aria-expanded={n.children ? drop : undefined}
                     onFocus={() => n.children && setDrop(true)}
-                    className={`relative py-2 text-[15px] transition-colors duration-300 hover:text-sky ${isActive(n.href) ? 'text-sky' : 'text-ink'}`}>
+                    className={`relative py-2 text-[15px] transition-colors duration-300 hover:text-accent ${isActive(n.href) ? 'text-accent' : 'text-ink'}`}>
                     {n.label}
                     <span className={`absolute -bottom-0.5 right-0 h-px bg-sky transition-[width] duration-500 ease-[var(--ease-out-soft)] ${isActive(n.href) ? 'w-full' : 'w-0'}`} />
                   </Link>
@@ -55,7 +56,7 @@ export function Header() {
                         {n.children.map((c, i) => (
                           <li key={c.href}>
                             <Link href={c.href} onBlur={() => i === n.children!.length - 1 && setDrop(false)}
-                              className="group flex items-center justify-between px-5 py-3 text-[15px] text-ink transition-colors hover:bg-mist hover:text-sky">
+                              className="group flex items-center justify-between px-5 py-3 text-[15px] text-ink transition-colors hover:bg-mist hover:text-accent">
                               {c.label}<span className="num text-[11px] text-muted">0{i + 1}</span>
                             </Link>
                           </li>
@@ -69,7 +70,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <Link href="/quote/" className="hidden h-11 items-center bg-sky text-navy px-5 text-[14px] font-medium transition-colors duration-300 hover:bg-white sm:inline-flex">
+            <Link href="/quote/" className="hidden h-11 items-center btn-primary px-5 text-[14px] font-medium transition-colors duration-300  sm:inline-flex">
               اطلب عرض سعر
             </Link>
             <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'إغلاق القائمة' : 'فتح القائمة'}
@@ -89,7 +90,7 @@ export function Header() {
             {nav.map((n, i) => (
               <li key={n.href} className="border-b border-line"
                 style={{ transition: 'transform .6s var(--ease-out-soft), opacity .6s', transitionDelay: open ? `${60 + i * 40}ms` : '0ms', transform: open ? 'none' : 'translateY(12px)', opacity: open ? 1 : 0 }}>
-                <Link href={n.href} tabIndex={open ? 0 : -1} className={`flex items-center justify-between py-5 text-[22px] font-medium ${isActive(n.href) ? 'text-sky' : 'text-ink'}`}>
+                <Link href={n.href} tabIndex={open ? 0 : -1} className={`flex items-center justify-between py-5 text-[22px] font-medium ${isActive(n.href) ? 'text-accent' : 'text-ink'}`}>
                   {n.label}<span className="num text-[12px] text-muted">0{i + 1}</span>
                 </Link>
                 {n.children ? (

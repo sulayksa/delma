@@ -29,7 +29,7 @@ export function LeaderSpotlight() {
   }, []);
 
   return (
-    <section className="section relative overflow-hidden" aria-labelledby="leader-title">
+    <section className="on-dark section relative overflow-hidden bg-navy" aria-labelledby="leader-title">
       <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(1,171,252,0.10),transparent)]" />
       <div className="wrap relative grid items-center gap-14 lg:grid-cols-12">
         <div className="lg:col-span-5 lg:col-start-1">

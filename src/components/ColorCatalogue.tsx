@@ -36,7 +36,7 @@ export function ColorCatalogue({ codes }: { codes: string[] }) {
               <span className={`relative block aspect-[3/4] overflow-hidden outline outline-1 outline-offset-[3px] transition-[outline-color] duration-300 ${i === sel ? 'outline-sky' : 'outline-transparent group-hover:outline-line'}`}>
                 <img src={asset(`/img/colors/${c}-sm.webp`)} alt="" width={360} height={442} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-105" />
               </span>
-              <span className={`num mt-2 block text-[13px] ${i === sel ? 'font-semibold text-sky' : 'text-body'}`}>{c}</span>
+              <span className={`num mt-2 block text-[13px] ${i === sel ? 'font-semibold text-accent' : 'text-body'}`}>{c}</span>
             </button>
           </li>
         ))}

@@ -38,7 +38,7 @@ export function Process({ steps }: { steps: Step[] }) {
             <li key={s.no} className="relative border-r border-line pr-6 md:border-r-0 md:pr-0">
               <span aria-hidden className={`absolute -right-[5px] top-1 h-[9px] w-[9px] rounded-full border transition-colors duration-500 md:right-0 md:top-[3px] ${on ? 'border-sky bg-sky' : 'border-line bg-paper'}`} />
               <div className="md:pt-10">
-                <span className={`num text-[40px] font-light leading-none transition-colors duration-700 ${on ? 'text-sky' : 'text-line'}`}>{s.no}</span>
+                <span className={`num text-[40px] font-light leading-none transition-colors duration-700 ${on ? 'text-accent' : 'text-line'}`}>{s.no}</span>
                 <h3 className="t-h3 mt-4 text-ink">{s.title}</h3>
                 <p className="t-body mt-2 max-w-[30ch]">{s.text}</p>
               </div>

@@ -39,7 +39,7 @@ export function ServicesList({ items, images }: { items: S[]; images: ImgT[] }) 
         <Link key={s.slug} href={`/products/${s.slug}/`} onPointerEnter={() => setActive(i)} onFocus={() => setActive(i)} onBlur={() => setActive(null)}
           className="group relative grid items-center gap-6 border-b border-line py-[clamp(28px,4vw,56px)] lg:grid-cols-12">
           <span aria-hidden className="absolute inset-0 origin-right scale-x-0 bg-[linear-gradient(270deg,rgba(1,171,252,0.07),transparent_70%)] transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-x-100" />
-          <h3 className="relative text-[clamp(34px,5.4vw,84px)] font-semibold leading-[1.1] text-ink transition-[color,transform] duration-500 ease-[var(--ease-out-soft)] group-hover:-translate-x-3 group-hover:text-sky lg:col-span-7">
+          <h3 className="relative text-[clamp(34px,5.4vw,84px)] font-semibold leading-[1.1] text-ink transition-[color,transform] duration-500 ease-[var(--ease-out-soft)] group-hover:-translate-x-3 group-hover:text-accent lg:col-span-7">
             <SplitWords text={s.title} />
           </h3>
           <p className="relative text-[16px] leading-8 text-body lg:col-span-4 lg:col-start-9"><SplitWords text={s.lead} dim={0.2} /></p>
@@ -49,7 +49,7 @@ export function ServicesList({ items, images }: { items: S[]; images: ImgT[] }) 
       {/* cursor-following framed photo (desktop) */}
       <div ref={card} aria-hidden className="pointer-events-none absolute left-0 top-0 z-10 hidden h-[400px] w-[310px] lg:block"
         style={{ opacity: active == null ? 0 : 1, transition: 'opacity .45s ease' }}>
-        <div className="relative h-full w-full overflow-hidden border border-white/15 bg-navy p-2 shadow-[0_40px_80px_rgba(0,0,0,0.45)]">
+        <div className="relative h-full w-full overflow-hidden border border-line bg-white p-2 shadow-[0_40px_80px_rgba(10,26,58,0.22)]">
           {images.map((im, i) => (
             <div key={i} className="absolute inset-2 overflow-hidden transition-[opacity,transform] duration-500 ease-[var(--ease-out-soft)]" style={{ opacity: active === i ? 1 : 0, transform: active === i ? 'scale(1)' : 'scale(1.12)' }}>
               <Img img={im} sizes="320px" className="h-full w-full" />

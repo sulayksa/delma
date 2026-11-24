@@ -43,7 +43,7 @@ export function Models({ title, kicker, items, contain = true, note }: { title: 
                 </div>
                 <span className="num text-[12px] text-muted">0{i + 1}</span>
               </div>
-              {showPrices && m.price ? <p className="mt-2 text-[14px] text-sky">{m.price}</p> : null}
+              {showPrices && m.price ? <p className="mt-2 text-[14px] text-accent">{m.price}</p> : null}
             </Reveal>
           ))}
         </ul>
@@ -66,7 +66,7 @@ export function Related({ current }: { current: string }) {
                 <div className="zoom relative col-span-2 aspect-[4/3] overflow-hidden bg-mist"><Img img={s.image} sizes="20vw" className="absolute inset-0 h-full w-full" /></div>
                 <div className="col-span-3">
                   <span className="num text-[12px] text-muted">{s.no}</span>
-                  <h3 className="t-h3 mt-1 text-ink transition-colors group-hover:text-sky">{s.title}</h3>
+                  <h3 className="t-h3 mt-1 text-ink transition-colors group-hover:text-accent">{s.title}</h3>
                   <p className="mt-2 text-[14px] leading-7 text-body">{s.lead}</p>
                 </div>
               </Link>

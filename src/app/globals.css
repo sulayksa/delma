@@ -9,23 +9,24 @@
 /* Delma brand — sampled from the company logo (#003E9A royal blue, #01ABFC sky) */
 @theme {
   --font-sans: "Plex Arabic", system-ui, sans-serif;
-  /* dark architectural theme — Delma royal blue #003E9A and sky #01ABFC from the logo */
-  --color-paper: #071430;
-  --color-mist: rgb(13 31 68 / 0.55);
-  --color-navy: #040C20;
+  /* light architectural theme — Delma royal blue #003E9A and sky #01ABFC from the logo */
+  --color-paper: #F8FAFD;
+  --color-mist: rgb(234 239 246 / 0.72);
+  --color-navy: #071430;
   --color-navy-2: #0D2147;
   --color-brand: #003E9A;
   --color-sky: #01ABFC;
-  --color-sky-ink: #4CC6FF;
-  --color-ink: #F3F6FB;
-  --color-body: #BAC4D4;
-  --color-muted: #8F9BB1;
-  --color-line: #1D2E52;
-  --color-gold: #C9A24A;
+  --color-accent: #0062B0;
+  --color-sky-ink: #0062B0;
+  --color-ink: #0E1A2E;
+  --color-body: #3C4656;
+  --color-muted: #586273;
+  --color-line: #DFE5EE;
+  --color-gold: #B08A3A;
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-:root { color-scheme: dark; }
+:root { color-scheme: light; }
 html { -webkit-text-size-adjust: 100%; text-rendering: optimizeLegibility; scroll-padding-top: 96px; }
 body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
 ::selection { background: var(--color-sky); color: #040C20; }
@@ -128,3 +129,11 @@ body { background: var(--color-paper); }
 
 main > section { overflow-x: clip; }
 html.lenis { scroll-behavior: auto; }
+
+/* dark zones inside the light site (hero, leadership, closing CTA, footer): tokens flip locally */
+.on-dark { --color-ink: #F3F6FB; --color-body: #BAC4D4; --color-muted: #9AA6BB; --color-line: #22355C; --color-accent: #4CC6FF; --color-sky-ink: #4CC6FF;
+  --color-paper: #071430; --color-mist: rgb(13 31 68 / 0.55); --color-gold: #C9A24A; color: var(--color-ink); }
+.btn-primary { background: var(--color-brand); color: #fff; }
+.btn-primary:hover { background: var(--color-navy); }
+.on-dark .btn-primary { background: var(--color-sky); color: #040C20; }
+.on-dark .btn-primary:hover { background: #fff; }

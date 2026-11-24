@@ -64,19 +64,19 @@ export function BlueprintBg() {
       const step = W < 768 ? 48 : 72;
       const ox = (-mouse.nx * 10) % step, oy = (-sy * 0.25 - mouse.ny * 10) % step;
       const grid = (alpha: number) => {
-        ctx.strokeStyle = `rgba(120,170,235,${alpha})`; ctx.lineWidth = 1; ctx.beginPath();
+        ctx.strokeStyle = `rgba(0,62,154,${alpha})`; ctx.lineWidth = 1; ctx.beginPath();
         for (let x = ox; x < W; x += step) { ctx.moveTo(Math.round(x) + 0.5, 0); ctx.lineTo(Math.round(x) + 0.5, H); }
         for (let y = oy; y < H; y += step) { ctx.moveTo(0, Math.round(y) + 0.5); ctx.lineTo(W, Math.round(y) + 0.5); }
         ctx.stroke();
       };
-      grid(0.035);
+      grid(0.045);
       if (mouse.x > -1000) {
         // brighter grid + soft light under the cursor
         ctx.save(); const R = W < 768 ? 160 : 260;
         const g = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, R);
-        g.addColorStop(0, 'rgba(1,171,252,0.10)'); g.addColorStop(1, 'rgba(1,171,252,0)');
+        g.addColorStop(0, 'rgba(1,171,252,0.12)'); g.addColorStop(1, 'rgba(1,171,252,0)');
         ctx.fillStyle = g; ctx.fillRect(mouse.x - R, mouse.y - R, R * 2, R * 2);
-        ctx.beginPath(); ctx.arc(mouse.x, mouse.y, R, 0, Math.PI * 2); ctx.clip(); grid(0.13); ctx.restore();
+        ctx.beginPath(); ctx.arc(mouse.x, mouse.y, R, 0, Math.PI * 2); ctx.clip(); grid(0.16); ctx.restore();
       }
 
       // floating plan symbols
@@ -89,7 +89,7 @@ export function BlueprintBg() {
         const d = Math.hypot(x - mouse.x, yy - mouse.y);
         const near = Math.max(0, 1 - d / 320);
         ctx.save(); ctx.translate(x, yy); ctx.rotate(g.r + near * 0.08);
-        ctx.strokeStyle = `rgba(${near > 0 ? '76,198,255' : '120,170,235'},${0.06 + g.z * 0.08 + near * 0.35})`;
+        ctx.strokeStyle = `rgba(${near > 0 ? '1,140,220' : '0,62,154'},${0.07 + g.z * 0.09 + near * 0.4})`;
         ctx.lineWidth = 1 + near * 0.6; glyph(g); ctx.restore();
       }
     };

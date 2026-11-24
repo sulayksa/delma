@@ -32,13 +32,15 @@ export function HeroHQ() {
 
   const facts = [['التأسيس', '2011'], ['المقر والمعرض', 'حي السعادة، الرياض'], ['الخدمات', 'تصنيع · توريد · تركيب']];
   return (
-    <section ref={sec} className="relative h-[100svh] min-h-[640px] overflow-hidden bg-navy">
+    <section ref={sec} className="relative h-[100svh] min-h-[640px] overflow-hidden bg-paper">
+      <div className="absolute inset-y-0 left-0 w-full overflow-hidden md:w-[64%]">
       <div ref={layer} className="absolute inset-[-4%] will-change-transform" style={{ transform: 'scale(1.08)' }}>
-        <Img img={{ src: 'hq-hero', alt: 'مقر مؤسسة دلما الجزيرة للمقاولات في الرياض', w: 3840, h: 2161 }} priority sizes="100vw" className="h-full w-full hero-hq__img" position="60% 45%" />
+        <Img img={{ src: 'hq-hero', alt: 'مقر مؤسسة دلما الجزيرة للمقاولات في الرياض', w: 3840, h: 2161 }} priority sizes="100vw" className="h-full w-full hero-hq__img" position="56% 42%" />
+      </div>
       </div>
       {/* grade: deep navy from the text side, fading to the photo */}
-      <div aria-hidden className="absolute inset-0 bg-[linear-gradient(270deg,rgba(4,12,32,0.94)_0%,rgba(4,12,32,0.78)_34%,rgba(4,12,32,0.25)_68%,rgba(4,12,32,0.35)_100%)] max-md:bg-[linear-gradient(180deg,rgba(4,12,32,0.55)_0%,rgba(4,12,32,0.86)_55%,rgba(4,12,32,0.96)_100%)]" />
-      <div aria-hidden className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(4,12,32,0.85),transparent)]" />
+      <div aria-hidden className="absolute inset-0 bg-[linear-gradient(270deg,#F8FAFD_0%,#F8FAFD_36%,rgba(248,250,253,0.55)_46%,rgba(248,250,253,0)_58%)] max-md:bg-[linear-gradient(180deg,rgba(248,250,253,0)_0%,rgba(248,250,253,0)_22%,#F8FAFD_46%,#F8FAFD_100%)]" />
+      <div aria-hidden className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(248,250,253,0.9),transparent)]" />
       <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(0deg,var(--color-paper),transparent)]" />
       <div aria-hidden className="hero-hq__sweep absolute inset-0" />
 
@@ -46,23 +48,23 @@ export function HeroHQ() {
         style={{ opacity: 'calc(1 - var(--hp, 0) * 1.6)', transform: 'translate3d(0, calc(var(--hp, 0) * -60px), 0)' }}>
         <div className="max-w-[640px]">
           <span aria-hidden className="block h-px w-14 origin-right bg-sky page-enter" style={{ animationDelay: '150ms' }} />
-          <h1 className="t-display mt-7 text-white"><SplitWords now text={'حلول متكاملة\nللأبواب والنوافذ'} delay={250} stagger={95} /></h1>
-          <p className="t-lead mt-7 max-w-[46ch] !text-white/80 page-enter" style={{ animationDelay: '800ms' }}>
+          <h1 className="t-display mt-7 text-ink"><SplitWords now text={'حلول متكاملة\nللأبواب والنوافذ'} delay={250} stagger={95} /></h1>
+          <p className="t-lead mt-7 max-w-[46ch] page-enter" style={{ animationDelay: '800ms' }}>
             خبرة منذ <span className="num">2011</span> في تصنيع وتوريد وتركيب الأبواب والنوافذ وحلول الألمنيوم والزجاج، بجودة تنفيذ تهتم بأدق التفاصيل.
           </p>
           <div className="mt-10 flex flex-wrap gap-3 page-enter" style={{ animationDelay: '950ms' }}>
             <Button href="/products/">استكشف خدماتنا</Button>
-            <Button href="/door-studio/" variant="outline-light">استوديو الأبواب ثلاثي الأبعاد</Button>
+            <Button href="/door-studio/" variant="ghost">استوديو الأبواب ثلاثي الأبعاد</Button>
           </div>
         </div>
       </div>
 
       <div className="absolute inset-x-0 bottom-0 z-[2] hidden md:block" style={{ opacity: 'calc(1 - var(--hp, 0) * 2)' }}>
-        <dl className="wrap grid grid-cols-3 border-t border-white/15">
+        <dl className="wrap grid grid-cols-3 border-t border-line">
           {facts.map(([k, v], i) => (
-            <div key={k} className="page-enter border-l border-white/10 py-6 pl-6 last:border-l-0" style={{ animationDelay: `${1100 + i * 120}ms` }}>
-              <dt className="text-[13px] text-white/55">{k}</dt>
-              <dd className="mt-1 text-[17px] font-medium text-white">{k === 'التأسيس' ? <span className="num">{v}</span> : v}</dd>
+            <div key={k} className="page-enter border-l border-line py-6 pl-6 last:border-l-0" style={{ animationDelay: `${1100 + i * 120}ms` }}>
+              <dt className="text-[13px] text-muted">{k}</dt>
+              <dd className="mt-1 text-[17px] font-medium text-ink">{k === 'التأسيس' ? <span className="num">{v}</span> : v}</dd>
             </div>
           ))}
         </dl>

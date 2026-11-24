@@ -10,7 +10,7 @@ const Arrow = () => (
 
 type BtnProps = { href: string; children: ReactNode; variant?: 'primary' | 'ghost' | 'light' | 'outline-light'; external?: boolean; className?: string };
 const styles = {
-  primary: 'bg-sky text-navy hover:bg-white',
+  primary: 'btn-primary',
   ghost: 'border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-navy',
   light: 'bg-white text-navy hover:bg-sky hover:text-white',
   'outline-light': 'border border-white/30 text-white hover:border-white hover:bg-white hover:text-navy',
@@ -25,7 +25,7 @@ export function Button({ href, children, variant = 'primary', external, classNam
 
 export function TextLink({ href, children, className = '' }: { href: string; children: ReactNode; className?: string }) {
   return (
-    <Link href={href} className={`group inline-flex items-center gap-2 text-[15px] font-medium text-sky ${className}`}>
+    <Link href={href} className={`group inline-flex items-center gap-2 text-[15px] font-medium text-accent ${className}`}>
       <span className="ulink">{children}</span><Arrow />
     </Link>
   );
