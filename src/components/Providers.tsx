@@ -26,7 +26,7 @@ export function Providers({ children }: { children: ReactNode }) {
     reduce.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.documentElement.classList.add('gs-on');
     if (reduce.current) return;
-    const l = new Lenis({ lerp: 0.1, wheelMultiplier: 0.9, autoRaf: false, anchors: true });
+    const l = new Lenis({ lerp: 0.2, wheelMultiplier: 1, autoRaf: false, anchors: true });
     lenis.current = l;
     l.on('scroll', ScrollTrigger.update);
     const tick = (t: number) => l.raf(t * 1000);

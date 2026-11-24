@@ -25,11 +25,10 @@ export function ServicesList({ items, images }: { items: S[]; images: ImgT[] }) 
       const nx = x + (tx - x) * 0.13, ny = y + (ty - y) * 0.13;
       vx = vx * 0.8 + (nx - x) * 0.2; x = nx; y = ny;
       c.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) perspective(900px) rotateY(${(-vx * 1.4).toFixed(2)}deg) rotateZ(${(vx * 0.25).toFixed(2)}deg)`;
-      raf = requestAnimationFrame(loop);
+      raf = Math.abs(tx - x) + Math.abs(ty - y) + Math.abs(vx) > 0.2 ? requestAnimationFrame(loop) : 0;
     };
-    const onMove = (e: PointerEvent) => { const r = w.getBoundingClientRect(); tx = e.clientX - r.left; ty = e.clientY - r.top; };
+    const onMove = (e: PointerEvent) => { const r = w.getBoundingClientRect(); tx = e.clientX - r.left; ty = e.clientY - r.top; if (!raf) raf = requestAnimationFrame(loop); };
     w.addEventListener('pointermove', onMove);
-    raf = requestAnimationFrame(loop);
     return () => { cancelAnimationFrame(raf); w.removeEventListener('pointermove', onMove); };
   }, []);
 

@@ -27,7 +27,7 @@ export function BlueprintBg() {
       }
     };
     const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2); W = window.innerWidth; H = window.innerHeight;
+      dpr = Math.min(window.devicePixelRatio || 1, 1.25); W = window.innerWidth; H = window.innerHeight;
       cv.width = W * dpr; cv.height = H * dpr; cv.style.width = W + 'px'; cv.style.height = H + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0); seed();
     };
@@ -81,11 +81,10 @@ export function BlueprintBg() {
 
       // floating plan symbols
       for (const g of glyphs) {
-        g.r += reduce ? 0 : g.vr;
         const span = H * 1.6;
         let y = (g.y - sy * g.z * 0.6) % span; if (y < -200) y += span;
         const x = g.x + mouse.nx * 40 * g.z;
-        const yy = y + mouse.ny * 30 * g.z + Math.sin(t * 0.0003 + g.x) * 6 * g.z;
+        const yy = y + mouse.ny * 30 * g.z;
         const d = Math.hypot(x - mouse.x, yy - mouse.y);
         const near = Math.max(0, 1 - d / 320);
         ctx.save(); ctx.translate(x, yy); ctx.rotate(g.r + near * 0.08);
@@ -94,27 +93,30 @@ export function BlueprintBg() {
       }
     };
 
-    let last = 0;
+    // draw only while something is still moving (scroll easing, pointer easing); idle = zero cost
     const loop = (t: number) => {
-      raf = requestAnimationFrame(loop);
+      raf = 0;
       if (document.hidden) return;
-      if (t - last < 14) return; // ~60fps cap, smooth on 120Hz too
-      last = t; draw(t);
+      draw(t);
+      const moving = Math.abs(scroll - sy) > 0.3 || Math.abs(mouse.tx - mouse.x) > 0.3 || Math.abs(mouse.ty - mouse.y) > 0.3
+        || Math.abs(mouse.tnx - mouse.nx) > 0.001 || Math.abs(mouse.tny - mouse.ny) > 0.001;
+      if (moving) raf = requestAnimationFrame(loop);
     };
+    const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
     const onMove = (e: PointerEvent) => {
       mouse.tx = e.clientX; mouse.ty = e.clientY; if (mouse.x < -1000) { mouse.x = mouse.tx; mouse.y = mouse.ty; }
-      mouse.tnx = e.clientX / W - 0.5; mouse.tny = e.clientY / H - 0.5;
+      mouse.tnx = e.clientX / W - 0.5; mouse.tny = e.clientY / H - 0.5; kick();
     };
-    const onLeave = () => { mouse.tx = mouse.ty = -9999; mouse.x = mouse.y = -9999; };
-    const onScroll = () => { scroll = window.scrollY; };
+    const onLeave = () => { mouse.tx = mouse.ty = -9999; mouse.x = mouse.y = -9999; kick(); };
+    const onScroll = () => { scroll = window.scrollY; kick(); };
 
     resize(); draw(0);
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', () => { resize(); draw(0); });
     if (!reduce) {
       window.addEventListener('pointermove', onMove, { passive: true });
       document.addEventListener('pointerleave', onLeave);
       window.addEventListener('scroll', onScroll, { passive: true });
-      raf = requestAnimationFrame(loop);
+      kick();
     }
     return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); window.removeEventListener('pointermove', onMove); document.removeEventListener('pointerleave', onLeave); window.removeEventListener('scroll', onScroll); };
   }, []);

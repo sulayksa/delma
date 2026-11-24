@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import { onFrame, schedule } from '@/lib/frame';
 
 type Step = { no: string; title: string; text: string };
 
@@ -12,19 +13,21 @@ export function Process({ steps }: { steps: Step[] }) {
   useEffect(() => {
     const el = ref.current; if (!el) return;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let raf = 0, visible = false;
-    const update = () => {
-      raf = 0;
-      const r = el.getBoundingClientRect(); const vh = window.innerHeight;
-      const p = reduce ? 1 : Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.35)));
-      if (bar.current) bar.current.style.transform = `scaleX(${p})`;
-      setActive(Math.min(steps.length - 1, Math.floor(p * steps.length * 1.0001) - (p === 0 ? 1 : 0)));
-    };
-    const onScroll = () => { if (visible && !raf) raf = requestAnimationFrame(update); };
-    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) onScroll(); });
-    io.observe(el); window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll);
-    return () => { io.disconnect(); window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); cancelAnimationFrame(raf); };
+    let visible = false, lastA = -2;
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) schedule(); });
+    io.observe(el);
+    const off = onFrame({
+      enabled: () => visible,
+      read: () => { const r = el.getBoundingClientRect(), vh = window.innerHeight; return reduce ? 1 : Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.35))); },
+      write: (p: number) => {
+        if (bar.current) bar.current.style.transform = `scaleX(${p})`;
+        const a = Math.min(steps.length - 1, Math.floor(p * steps.length * 1.0001) - (p === 0 ? 1 : 0));
+        if (a !== lastA) { lastA = a; setActive(a); }
+      },
+    });
+    return () => { io.disconnect(); off(); };
   }, [steps.length]);
+
 
   return (
     <div ref={ref} className="relative mt-[clamp(48px,7vw,88px)]">

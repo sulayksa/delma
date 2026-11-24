@@ -30,7 +30,7 @@ export function Header() {
   return (
     <>
       <header
-        className={`${overHero ? 'on-dark' : ''} fixed inset-x-0 top-0 z-50 border-b transition-[height,background-color,border-color] duration-500 ease-[var(--ease-out-soft)] ${scrolled || open ? 'h-[68px] border-line bg-white/90 backdrop-blur-md' : 'h-[88px] border-transparent bg-white/0'}`}
+        className={`${overHero ? 'on-dark' : ''} fixed inset-x-0 top-0 z-50 border-b transition-[height,background-color,border-color] duration-500 ease-[var(--ease-out-soft)] ${scrolled || open ? 'h-[68px] border-line bg-white/[0.97]' : 'h-[88px] border-transparent bg-white/0'}`}
       >
         <div className="wrap flex h-full items-center justify-between gap-6">
           <Link href="/" aria-label={`${company.nameAr} — الرئيسية`} className="shrink-0">

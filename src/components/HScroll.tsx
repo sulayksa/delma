@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { Img } from './Img';
+import { onFrame, schedule } from '@/lib/frame';
 import type { Img as ImgT } from '@/content/site';
 
 type Item = { title: string; sub: string; href: string; image: ImgT; fit?: 'cover' | 'contain' };
@@ -17,33 +18,40 @@ export function HScroll({ items, heading }: { items: Item[]; heading: React.Reac
   useEffect(() => {
     const el = sec.current, tr = track.current; if (!el || !tr) return;
     const mq = window.matchMedia('(min-width: 1024px) and (prefers-reduced-motion: no-preference)');
-    let raf = 0;
-    const size = () => {
+    let dist = 0, tl0 = 0, offsets: number[] = [];
+    const measure = () => {
       if (!mq.matches) { el.style.height = ''; tr.style.transform = ''; return; }
-      const dist = tr.scrollWidth - window.innerWidth + 120;
+      tr.style.transform = 'none';
+      const kids = Array.from(tr.children) as HTMLElement[];
+      tl0 = tr.getBoundingClientRect().left;
+      offsets = kids.map((k) => { const r = k.getBoundingClientRect(); return r.left - tl0 + r.width / 2; });
+      dist = tr.scrollWidth - window.innerWidth + 120;
       el.style.height = `${window.innerHeight + dist}px`;
+      schedule();
     };
-    const update = () => {
-      raf = 0; if (!mq.matches) return;
-      const r = el.getBoundingClientRect();
-      const total = r.height - window.innerHeight;
-      const p = Math.min(1, Math.max(0, -r.top / Math.max(1, total)));
-      const dist = tr.scrollWidth - window.innerWidth + 120;
-      tr.style.transform = `translate3d(${p * dist}px, 0, 0)`;
-      if (bar.current) bar.current.style.transform = `scaleX(${p})`;
-      const cx = window.innerWidth / 2;
-      Array.from(tr.children).forEach((c) => {
-        const b = (c as HTMLElement).getBoundingClientRect();
-        const d = (b.left + b.width / 2 - cx) / window.innerWidth; // -1..1
-        const card = (c as HTMLElement).firstElementChild as HTMLElement;
-        card.style.transform = `perspective(1400px) rotateY(${(-d * 18).toFixed(2)}deg) translate3d(0, ${(Math.abs(d) * 30).toFixed(1)}px, ${(-Math.abs(d) * 120).toFixed(1)}px)`;
-      });
-    };
-    const on = () => { if (!raf) raf = requestAnimationFrame(update); };
-    const onResize = () => { size(); on(); };
-    size(); update();
-    window.addEventListener('scroll', on, { passive: true }); window.addEventListener('resize', onResize); mq.addEventListener('change', onResize);
-    return () => { window.removeEventListener('scroll', on); window.removeEventListener('resize', onResize); mq.removeEventListener('change', onResize); cancelAnimationFrame(raf); };
+    const off = onFrame({
+      enabled: () => mq.matches,
+      read: () => { const r = el.getBoundingClientRect(); return { top: r.top, h: r.height, vw: window.innerWidth, vh: window.innerHeight }; },
+      write: ({ top, h, vw, vh }) => {
+        if (top > vh || top + h < 0) return;
+        const p = Math.min(1, Math.max(0, -top / Math.max(1, h - vh)));
+        const shift = p * dist;
+        tr.style.transform = `translate3d(${shift}px, 0, 0)`;
+        if (bar.current) bar.current.style.transform = `scaleX(${p})`;
+        const kids = tr.children;
+        for (let i = 0; i < kids.length; i++) {
+          const cx = tl0 + offsets[i] + shift;
+          const d = (cx - vw / 2) / vw;
+          const card = (kids[i] as HTMLElement).firstElementChild as HTMLElement;
+          card.style.transform = `perspective(1400px) rotateY(${(-d * 18).toFixed(2)}deg) translate3d(0, ${(Math.abs(d) * 30).toFixed(1)}px, ${(-Math.abs(d) * 120).toFixed(1)}px)`;
+        }
+      },
+    });
+    measure();
+    const onResize = () => measure();
+    window.addEventListener('resize', onResize); mq.addEventListener('change', onResize);
+    document.fonts?.ready.then(measure);
+    return () => { off(); window.removeEventListener('resize', onResize); mq.removeEventListener('change', onResize); };
   }, []);
 
   return (

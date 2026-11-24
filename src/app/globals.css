@@ -108,7 +108,7 @@ html.lenis, html.lenis body { height: auto; }
 .studio-fan:hover .studio-fan__door, .studio-fan:focus-visible .studio-fan__door { transform: rotateY(0deg) translateZ(0) translateY(-8px); }
 
 /* scroll-scrubbed words */
-.scrub__w { display: inline-block; opacity: .14; will-change: opacity, transform, filter; }
+.scrub__w { display: inline-block; opacity: .14; }
 @media (scripting: none) { .scrub__w { opacity: 1; } }
 body { background: var(--color-paper); }
 #main, footer { position: relative; z-index: 1; }
@@ -119,12 +119,6 @@ body { background: var(--color-paper); }
   animation: hqsweep 9s cubic-bezier(.45,0,.2,1) 1.4s infinite; mix-blend-mode: screen; pointer-events: none; }
 @keyframes hqsweep { 0% { background-position: 120% 0; } 45%, 100% { background-position: -40% 0; } }
 
-/* leadership: depth planes */
-.leader-stage { --lx: 0; --ly: 0; perspective: 1400px; }
-.leader-arch { transform: translate3d(calc(var(--lx) * 14px), calc(var(--ly) * 10px), 0) rotateY(calc(var(--lx) * -6deg)) rotateX(calc(var(--ly) * 5deg)); }
-.leader-portrait { transform: translateX(-50%) translate3d(calc(var(--lx) * -16px), calc(var(--ly) * -8px), 0); filter: drop-shadow(0 30px 40px rgba(0,0,0,.45)); }
-.leader-sheen { background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.10) 45%, transparent 60%);
-  transform: translateX(calc(var(--lx) * 60%)); }
 @media (prefers-reduced-motion: reduce) { .hero-hq__sweep { animation: none; } }
 
 main > section { overflow-x: clip; }
@@ -137,3 +131,11 @@ html.lenis { scroll-behavior: auto; }
 .btn-primary:hover { background: var(--color-navy); }
 .on-dark .btn-primary { background: var(--color-sky); color: #040C20; }
 .on-dark .btn-primary:hover { background: #fff; }
+
+/* leadership: editorial profile */
+.leader-flutes { background-image: repeating-linear-gradient(90deg, rgba(0,62,154,0.045) 0 1px, transparent 1px 28px);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
+  transform: translate3d(0, calc((1 - var(--lp)) * 30px), 0); }
+.leader-photo { transform: translate3d(-50%, calc((1 - var(--lp)) * 14%), 0) scale(calc(0.96 + var(--lp) * 0.04));
+  opacity: calc(0.15 + var(--lp) * 0.85); filter: drop-shadow(0 26px 30px rgba(10,26,58,0.18)); transform-origin: 50% 100%; }
+.leader-corner { opacity: var(--lp); transform: scale(calc(0.6 + var(--lp) * 0.4)); transition: none; }
